@@ -1,28 +1,28 @@
-# Project Title
+# Influences on the Global Happiness Index
 
-Write a 1-2 sentences that quickly and clearly convey what your repo is for.
+We are looking to analyze the gross happiness of certain countries for the year of 2024. The information displayed will show a few different factors going into the country's happiness index but the big things to observe are the rank (how the country compares to others) and their life evaluation.
 
 ## Overview
 
-Expand on those introductory sentences with a brief but informative description of your project's purpose and goals. This section should help visitors decide whether they should dig deeper into your repo/project.
+When reviewing the global happiness index, we are given data on lots of different countries over the course of many recent years. We have decided to focus our energy on the year of 2024. We believed that focusing on years that occurred further in the past wouldn't help us gage true insight (due to COVID and its repercussions). The dataset has a few different variables present but the main one to focus on is rank. Rank explains how the country's overall happiness compares to other countries. This is a very important term in economics! We are interested in looking at how small changes in overall life evaluation cause a country to rise and fall in the ranks. This can show us simple things such as where individuals would want to go on vacation, all the way to the bold decision to move your whole life to a new country. This kind of data analysis also helps shine a spotlight on the additional correlations between successful countries and where they fall in the Global Happiness Index ranks.
 
 ### Interesting Insight (Optional)
 
-This is optional but highly recommended. You'll include one interesting insight from your project as part of the README. This insight is most effective when you include a visual. Keep in mind that this visual must be included as an image file (e.g., JPG, PNG, etc.). You can export plots created with `{ggplot2}` by using the function `ggsave`.
+It is interesting to note that the countries that have the highest economic output and rank highest on overall quality of life scales, also rank highest (usually in the top 10) on the Global Happiness Index. These are typically Scandinavian such as Denmark, Sweden, Finland, etc. This shows a link between being financially well off and having higher happiness levels. 
+https://www.researchgate.net/figure/Hot-spot-analysis-results-for-the-overall-Good-Country-Index_fig6_303093738
 
 ## Data Sources and Acknowledgements
 
-Be sure to list where you got any data used within the project. Be sure to acknowledge any one whose work or elements you're drawing upon.
+We are using the publicly available World Happiness Report 2025 dataset on World Happiness Report. The link is: https://www.worldhappiness.report/data-sharing/
 
 ## Current Plan
 
-Provide some information about what you intend to doe with the project. You can additionally refer the visitor to your detailed plan document.
+We plan to wrangle the data to show all variables in separate columns for only the year of 2024. This also means that every country will have their own row and will be easier to analyze. We also plan to create graphs that exhibit the relationship between life evaluation and rank. We expect to be able to note the correlation between these variables, which countries are better off, and also how sensitive tha rank system is. This means that we will be able to observe how much a country can rise or fall due to only a tenth or hundredth change in life evaluation. All information will be in seperate documents and then compiled into a formalm pdf where all findings can be observed in a clean and systematic way (this should optimize knowledge intake from the data findings)
 
 ## Repo Structure
 
-Use this section to explain the structure of your repo. This should help visitors quickly figure out where they should look to find certain elements. Further, you can use this space to highlight and briefly explain important/key files in the repo.
-
+In our repo, you will be able to find the original World Happiness Report data, our new wrangled data, plan document, and our final write up documents all on the home page. To view any of these documents, simply click on the document name or title and you will be redirected. All infomration necessary to get a full picture of this statistical analysis should be at your disposal here.   
 
 ## Authors
 
-Give information about who are the authors of the project and how people can get in touch if they have questions.
+Ava Walters: amw7993@psu.edu; Nguyen Ngo: ntn5155@psu.edu; Jenny Tong: jkt5639@psu.edu
