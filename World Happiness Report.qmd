@@ -1,0 +1,47 @@
+---
+title: "World Happiness Index"
+author: "Nguyen Ngo, Jenny Tong, Ava Walters"
+date: "12/02/2025"
+format: 
+  pdf:
+    documentclass: article
+    # margin: 1 in all sides
+    geometry:
+      - margin=1in
+    
+    # no table of content
+    toc: false
+    
+    # figures with captions on top
+    fig-pos: "H"
+    tbl-cap-location: top
+    fig-cap-location: top
+ 
+# prevent warnings and messages
+execute:
+  echo: false
+  warning: false
+  message: false
+  error: false
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this 
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
