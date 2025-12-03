@@ -34,7 +34,7 @@ This report contains statistical analysis on ...
 Each section presents distinct analytical approaches and findings.
 
 
-# World Happiness Index {#sec-armed}
+# World Happiness Index {#sec-world}
 
 The analysis focuses specifically...
 
