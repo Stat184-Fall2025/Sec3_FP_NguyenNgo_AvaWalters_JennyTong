@@ -6,7 +6,7 @@ We are looking to analyze the gross happiness of certain countries for the year 
 
 When reviewing the global happiness index, we are given data on lots of different countries over the course of many recent years. We have decided to focus our energy on the year of 2024. We believed that focusing on years that occurred further in the past wouldn't help us gage true insight (due to COVID and its repercussions). The dataset has a few different variables present but the main one to focus on is rank. Rank explains how the country's overall happiness compares to other countries. This is a very important term in economics! We are interested in looking at how small changes in overall life evaluation cause a country to rise and fall in the ranks. This can show us simple things such as where individuals would want to go on vacation, all the way to the bold decision to move your whole life to a new country. This kind of data analysis also helps shine a spotlight on the additional correlations between successful countries and where they fall in the Global Happiness Index ranks.
 
-### Interesting Insight
+## Interesting Insight
 
 It is interesting to note that the countries that have the highest economic output and rank highest on overall quality of life scales, also rank highest (usually in the top 10) on the Global Happiness Index. These are typically Scandinavian such as Denmark, Sweden, Finland, etc. This shows a link between being financially well off and having higher happiness levels. 
 https://www.reddit.com/r/dataisbeautiful/comments/1hb4h5i/oc_country_happiness_vs_gdp/
