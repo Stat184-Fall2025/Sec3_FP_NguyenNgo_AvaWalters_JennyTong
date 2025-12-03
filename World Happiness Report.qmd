@@ -1,0 +1,68 @@
+---
+title: "World Happiness Index"
+author: "Nguyen Ngo, Jenny Tong, Ava Walters"
+date: "12/02/2025"
+format: 
+  pdf:
+    documentclass: article
+    # margin: 1 in all sides
+    geometry:
+      - margin=1in
+    
+    # no table of content
+    toc: false
+    
+    # figures with captions on top
+    fig-pos: "H"
+    tbl-cap-location: top
+    fig-cap-location: top
+ 
+# prevent warnings and messages
+execute:
+  echo: false
+  warning: false
+  message: false
+  error: false
+---
+
+# Introduction
+
+This report contains statistical analysis on ...
+
+1.  **fiasdjfl**
+
+Each section presents distinct analytical approaches and findings.
+
+
+# World Happiness Index {#sec-armed}
+
+The analysis focuses specifically...
+
+## Analysis and Visualization
+\vspace{8mm}
+
+```{r world-happiness-index-wrangling, include=FALSE}
+
+ # Wrangling Code that will not be shown when rendered
+
+# STEP 1:
+
+# STEP 2:
+
+# STEP 3:
+
+#...
+```
+
+```{r display-visualization, echo=FALSE}
+# actual displaying stpe
+#| label: change-label-in-this-format
+#| tbl-cap: "caption for visualizaiton"
+# Step 10: 
+
+
+```
+
+\vspace{8mm}
+
+## Narrative Text ( check rubric again)
