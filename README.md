@@ -8,7 +8,7 @@ When reviewing the global happiness index, we are given data on lots of differen
 
 ## Interesting Insight
 
-It is interesting to note that the countries that have the highest economic output and rank highest on overall quality of life scales, also rank highest (usually in the top 10) on the Global Happiness Index. These are typically Scandinavian such as Denmark, Sweden, Finland, etc. This shows a link between being financially well off and having higher happiness levels. 
+It is interesting to note that the countries that have the highest economic output and rank highest on overall quality of life scales, also rank highest (usually in the top 10) on the Global Happiness Index. These are typically Scandinavian such as Denmark, Sweden, Finland, etc. This shows a link between being financially well off (with strong and stable governments) and having higher happiness levels. 
 https://www.reddit.com/r/dataisbeautiful/comments/1hb4h5i/oc_country_happiness_vs_gdp/
 
 ## Data Sources and Acknowledgements
@@ -21,7 +21,7 @@ We plan to wrangle the data to show all variables in separate columns for only t
 
 ## Repo Structure
 
-In our repo, you will be able to find the original World Happiness Report data, our new wrangled data, plan document, and our final write up documents all on the home page. To view any of these documents, simply click on the document name or title and you will be redirected. All infomration necessary to get a full picture of this statistical analysis should be at your disposal here.   
+In our repo, you will be able to find the original World Happiness Report data, our new wrangled data within the QMD file, plan document, and our final write up documents all on the home page (QMD and PDF file). To view any of these documents, simply click on the document name or title and you will be redirected. All infomration necessary to get a full picture of this statistical analysis should be at your disposal here.   
 
 ## Authors
 
