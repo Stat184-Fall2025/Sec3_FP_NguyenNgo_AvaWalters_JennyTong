@@ -56,8 +56,9 @@ The analysis focuses specifically...
 
 ```{r display-visualization, echo=FALSE}
 # actual displaying stpe
-#| label: change-label-in-this-format
-#| tbl-cap: "caption for visualizaiton"
+#| label: change-label-in-this-format 
+#| tbl-cap: "caption for visualizaiton" # caption for figure/graph
+#| fig-alt: "C" # alt caption
 # Step 10: 
 
 
@@ -65,4 +66,27 @@ The analysis focuses specifically...
 
 \vspace{8mm}
 
-## Narrative Text ( check rubric again)
+## Narrative Text 
+
+
+
+
+------------------------------------------------------------------------
+
+# Data References
+
+
+
+
+------------------------------------------------------------------------
+
+# Author Contribution
+
+
+
+
+
+
+------------------------------------------------------------------------
+
+# Code Appendix
