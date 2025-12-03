@@ -25,23 +25,44 @@ execute:
   error: false
 ---
 
-## Quarto
+# Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+This report contains statistical analysis on ...
 
-## Running Code
+1.  **fiasdjfl**
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Each section presents distinct analytical approaches and findings.
 
-```{r}
-1 + 1
+
+# World Happiness Index {#sec-armed}
+
+The analysis focuses specifically...
+
+## Analysis and Visualization
+\vspace{8mm}
+
+```{r world-happiness-index-wrangling, include=FALSE}
+
+ # Wrangling Code that will not be shown when rendered
+
+# STEP 1:
+
+# STEP 2:
+
+# STEP 3:
+
+#...
 ```
 
-You can add options to executable code like this 
+```{r display-visualization, echo=FALSE}
+# actual displaying stpe
+#| label: change-label-in-this-format
+#| tbl-cap: "caption for visualizaiton"
+# Step 10: 
 
-```{r}
-#| echo: false
-2 * 2
+
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+\vspace{8mm}
+
+## Narrative Text ( check rubric again)
