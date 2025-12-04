@@ -42,12 +42,21 @@ The analysis focuses specifically...
 \vspace{8mm}
 
 ```{r world-happiness-index-wrangling, include=FALSE}
-
  # Wrangling Code that will not be shown when rendered
 
-# STEP 1:
+# STEP 1: Load required pacakges
+library(tidyverse)
+library(readxl) # read excel file
+library(janitor)
 
-# STEP 2:
+# STEP 2: Filter for 2024 data
+# select important columns
+happiness_raw <- read_excel(
+  "/Applications/PSU/FALL 2025/STAT 184/week 12/nguyen_repo_practice/Sec-3_FP_NguyenNgo_AvaWalters_JennyTong/World Happiness Report Data Figure 2.1.xlsx",
+sheet = "Data for Figure 2.1 (2011–2024)"
+) %>%
+  # standardize column names
+  clean_names()
 
 # STEP 3:
 
