@@ -61,7 +61,7 @@ sheet = "Data for Figure 2.1 (2011–2024)"
 # select important columns
 happiness_2024 <-  happiness_raw %>% 
   filter (year == 2024) %>% 
-  # rename columsn
+  # rename columns
   select(
     country = country_name,
     rank,
@@ -81,6 +81,20 @@ happiness_2024 <-  happiness_raw %>%
   ) %>% 
   filter(!is.na(rank), !is.na(life_evaluation))
 
+# STEP 4: Calculate the sensitivity metrics
+happiness_sensitivity <- happiness_2024 %>% 
+  # order by descending life evaluation
+  arrange(desc(life_evaluation)) %>% 
+  mutate(
+    life_eval_diff = life_evaluation - lead(life_evaluation), 
+    rank_diff = rank - lead(rank),
+    sensitivity = abs(rank_diff / life_eval_diff), # measures sensitivity
+    sensitivity_group = cut(sensitivity,
+                            breaks = c(0, 5, 10, 20, Inf),
+                            Labels = c("Low", "Medium", "High", "Very High")
+                            )
+  ) %>% 
+  filter(!is.na(sensitivity))
 ```
 
 ```{r display-visualization, echo=FALSE}
