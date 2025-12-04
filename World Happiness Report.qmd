@@ -95,6 +95,29 @@ happiness_sensitivity <- happiness_2024 %>%
                             )
   ) %>% 
   filter(!is.na(sensitivity))
+
+# STEP 5: Compute correlation of factors with the rank
+factor_correlations <- happiness_2024 %>% 
+  select(rank, life_evaluation, gdp, corruption, social_support, health_life_expectancy, freedom, generosity) %>% 
+  # compute a correlation matrix
+  cor(use = "complete.obs") %>% 
+  as.data.frame() M
+# convert to a column
+rownames_to_column("factor") %>%
+  # extract correlation with rank
+  select(factor, correlation_with_rank = rank)
+
+# STEP 6: Top 10 happiest countries table
+top_10 <- happiness_2024 %>% 
+  # select 10 smallest ranks
+  slice_min(rank, n = 10) %>% 
+  select(country, rank, life_evaluation, gdp, corruption)
+
+# STEP 7: Create bottom 10 least happy countries table
+bottom_10 <- happiness_2024 %>% 
+  # select 10 largest ranks
+  slice_max(rank, n = 10) %>% 
+  select(country, rank, life_evaluation, gdp, corruption)
 ```
 
 ```{r display-visualization, echo=FALSE}
