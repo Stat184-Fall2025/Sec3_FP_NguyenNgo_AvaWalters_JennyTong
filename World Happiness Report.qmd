@@ -39,7 +39,6 @@ This analysis employs Exploratory Data Analysis techniques to find different rel
 
 ## FAIR (?)
 
-The analysis focuses specifically...
 ## CARE (?)
 
 ## Data Preparation
