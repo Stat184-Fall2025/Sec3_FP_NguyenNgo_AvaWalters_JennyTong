@@ -81,7 +81,7 @@ happiness_2024 <-  happiness_raw %>%
   ) %>% 
   filter(!is.na(rank), !is.na(life_evaluation))
 
-# STEP 4: Calculate the sensitivity metrics
+# STEP 4: Calculate the Sensitivity Metrics
 happiness_sensitivity <- happiness_2024 %>% 
   # order by descending life evaluation
   arrange(desc(life_evaluation)) %>% 
@@ -96,28 +96,38 @@ happiness_sensitivity <- happiness_2024 %>%
   ) %>% 
   filter(!is.na(sensitivity))
 
-# STEP 5: Compute correlation of factors with the rank
-factor_correlations <- happiness_2024 %>% 
-  select(rank, life_evaluation, gdp, corruption, social_support, health_life_expectancy, freedom, generosity) %>% 
-  # compute a correlation matrix
-  cor(use = "complete.obs") %>% 
-  as.data.frame() M
-# convert to a column
-rownames_to_column("factor") %>%
-  # extract correlation with rank
-  select(factor, correlation_with_rank = rank)
+# STEP 5: Compute Correlation of Factors w/ Rank
+factor_correlations <- happiness_2024 %>%
+select(rank, life_evaluation, gdp, corruption, social_support,
+health_life_expectancy, freedom, generosity) %>% 
+cor(use = "complete.obs") %>% # compute correlation matrix
+as.data.frame() %>%
+rownames_to_column("factor") %>% # convert rownames to a column
+select(factor, correlation_with_rank = rank)
 
-# STEP 6: Top 10 happiest countries table
+# STEP 6: Top 10 Happiest Countries Table
 top_10 <- happiness_2024 %>% 
   # select 10 smallest ranks
   slice_min(rank, n = 10) %>% 
   select(country, rank, life_evaluation, gdp, corruption)
 
-# STEP 7: Create bottom 10 least happy countries table
+# STEP 7: Create Bottom 10 Least Happiest Countries Table
 bottom_10 <- happiness_2024 %>% 
   # select 10 largest ranks
   slice_max(rank, n = 10) %>% 
   select(country, rank, life_evaluation, gdp, corruption)
+
+# STEP 8: A summary Statistics Table, if needed
+summary_stats <- happiness_2024 %>% 
+  summarize(
+    # count countries
+    n_countries = n(),
+    avg_life_eval = mean(life_evaluation, na.rm = TRUE),
+    avg_gdp = mean(gdp, na.rm = TRUE),
+    avg_corruption - mean(corruption, na.rm = TRUE),
+    life_eval_range = max(life_evaluation) - min(life_evaluation),
+    rank_range = max(rank) - min(rank)
+  )
 ```
 
 ```{r display-visualization, echo=FALSE}
