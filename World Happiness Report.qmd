@@ -117,14 +117,14 @@ bottom_10 <- happiness_2024 %>%
   slice_max(rank, n = 10) %>% 
   select(country, rank, life_evaluation, gdp, corruption)
 
-# STEP 8: A summary Statistics Table, if needed
+# STEP 8: A Summary Statistics Table, if needed
 summary_stats <- happiness_2024 %>% 
   summarize(
     # count countries
     n_countries = n(),
     avg_life_eval = mean(life_evaluation, na.rm = TRUE),
     avg_gdp = mean(gdp, na.rm = TRUE),
-    avg_corruption - mean(corruption, na.rm = TRUE),
+    avg_corruption = mean(corruption, na.rm = TRUE),
     life_eval_range = max(life_evaluation) - min(life_evaluation),
     rank_range = max(rank) - min(rank)
   )
