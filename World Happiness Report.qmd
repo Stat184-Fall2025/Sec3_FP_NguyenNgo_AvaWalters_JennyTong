@@ -49,8 +49,7 @@ library(tidyverse)
 library(readxl) # read excel file
 library(janitor)
 
-# STEP 2: Filter for 2024 data
-# select important columns
+# STEP 2: Load and clean the Excel dataset
 happiness_raw <- read_excel(
   "/Applications/PSU/FALL 2025/STAT 184/week 12/nguyen_repo_practice/Sec-3_FP_NguyenNgo_AvaWalters_JennyTong/World Happiness Report Data Figure 2.1.xlsx",
 sheet = "Data for Figure 2.1 (2011–2024)"
@@ -58,9 +57,30 @@ sheet = "Data for Figure 2.1 (2011–2024)"
   # standardize column names
   clean_names()
 
-# STEP 3:
+# STEP 3: Filter for 2024 data
+# select important columns
+happiness_2024 <-  happiness_raw %>% 
+  filter (year == 2024) %>% 
+  # rename columsn
+  select(
+    country = country_name,
+    rank,
+    life_evaluation = life_evaluation_3_year_average,
+    gdp = explained_by_log_gdp_per_capita,
+    social_support = explained_by_social_support,
+    health_life_expectancy = explained_by_healthy_life_expectancy,
+    freedom = explained_by_freedom_to_make_life_choices,
+    generosity = explained_by_generosity,
+    corruption = explained_by_perceptions_of_corruption,
+    dystopia_residual
+  ) %>% 
+  # fix incomplete rows and convert ranks to integers
+  mutate(
+    rank = as.integer(rank),
+    across(c(life_evaluation:corruption), as.numeric)  
+  ) %>% 
+  filter(!is.na(rank), !is.na(life_evaluation))
 
-#...
 ```
 
 ```{r display-visualization, echo=FALSE}
