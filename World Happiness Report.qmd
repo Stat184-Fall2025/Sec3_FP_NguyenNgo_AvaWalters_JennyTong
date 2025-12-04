@@ -38,7 +38,7 @@ Each section presents distinct analytical approaches and findings.
 
 The analysis focuses specifically...
 
-## Analysis and Visualization
+## Tables and Visualizations
 \vspace{8mm}
 
 ```{r world-happiness-index-wrangling, include=FALSE}
