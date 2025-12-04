@@ -29,16 +29,21 @@ execute:
 
 This report contains statistical analysis on ...
 
-1.  **fiasdjfl**
+1.  **Life Evaluation vs Rank:** Citizens' life satisfaction correlation with their country's happiness ranking.
+2.  **Economic Influence:** The relationship between GDP per capita and happiness index.
+3.  **Governance Impact:** Corruption perception effect happiness rankings.
 
-Each section presents distinct analytical approaches and findings.
+This analysis employs Exploratory Data Analysis techniques to find different relationships in data and provide insights into what contribute to a nation's happiness index.
 
+# Data Provenance and Ethical Considerations (??) {#sec-armed}
 
-# World Happiness Index {#sec-armed}
+## FAIR (?)
 
 The analysis focuses specifically...
+## CARE (?)
 
-## Tables and Visualizations
+## Data Preparation
+
 \vspace{8mm}
 
 ```{r world-happiness-index-wrangling, include=FALSE}
@@ -130,6 +135,8 @@ summary_stats <- happiness_2024 %>%
   )
 ```
 
+Explanation
+
 ```{r display-visualization, echo=FALSE}
 # actual displaying stpe
 #| label: change-label-in-this-format
@@ -141,4 +148,82 @@ summary_stats <- happiness_2024 %>%
 
 \vspace{8mm}
 
-## Narrative Text ( check rubric again)
+## Summary Statistics (? maybe to display what we have first then go into tables and figures)
+
+## Visualizations
+
+## 1. Life Evaluation vs Country Rank
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+**Interpretation**:
+
+## 2. GDP Contribution vs Country Rank
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+**Interpretation**:
+
+## 3. Corruption Perception vs Country Rank
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+**Interpretation**:
+
+## 4. Counries ranking (?) or other graphs maybe
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+**Interpretation**"
+
+# Discussion and Conclusions
+
+## Key Findings
+
+1.  **Life Evaluation**:
+
+2.  **Economic Foundation**
+
+3.  **Governance Importance**
+
+## Limitations and Future Research
+
+## Recommendations (???)
+
+# Author Contributions
+
+# References
+
+# Code Appendix
