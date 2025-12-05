@@ -13,7 +13,7 @@ https://www.reddit.com/r/dataisbeautiful/comments/1hb4h5i/oc_country_happiness_v
 
 ## Data Sources and Acknowledgements
 
-We are using the publicly available World Happiness Report 2025 dataset on World Happiness Report. The link is: https://www.worldhappiness.report/data-sharing/
+We are using the publicly available World Happiness Report dataset (2011-2024) on World Happiness Report. The link is: https://www.worldhappiness.report/data-sharing/
 
 ## Current Plan
 
