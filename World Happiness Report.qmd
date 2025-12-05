@@ -55,7 +55,7 @@ library(janitor)
 
 # STEP 2: Load and clean the Excel dataset
 happiness_raw <- read_excel(
-  "/Applications/PSU/FALL 2025/STAT 184/week 12/nguyen_repo_practice/Sec-3_FP_NguyenNgo_AvaWalters_JennyTong/World Happiness Report Data Figure 2.1.xlsx",
+  "World Happiness Report Data Figure 2.1.xlsx",
 sheet = "Data for Figure 2.1 (2011–2024)"
 ) %>%
   # standardize column names
@@ -227,16 +227,62 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 \vspace{4mm}
 
 ```{r}
+library(dplyr)
+#| tbl-cap: "Corruption Perception Statistics by Rank Group"
 
+# create rank groups first 
+happiness_2024 <- happiness_2024 %>% 
+  mutate(
+    rank_group = cut(rank, 
+                     breaks = quantile(rank, probs = seq(0, 1, 0.2), na.rm = TRUE),
+                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
+                     include.lowest = TRUE)
+  )
+
+# create the summary table for corruption
+corruption_summary <- happiness_2024 %>% 
+  group_by(`Rank Group` = rank_group) %>% 
+  summarize(
+    `Number of Countries` = n(),
+    `Avg. Corruption` = round(mean(corruption, na.rm = TRUE), 2),
+    `Min` = round(min(corruption, na.rm = TRUE), 2),
+    `Max` = round(max(corruption, na.rm = TRUE), 2),
+    `STDEV` = round(sd(corruption, na.rm = TRUE), 2)
+  ) %>% 
+  arrange(`Rank Group`)
+
+knitr::kable(corruption_summary)
 ```
 
 \vspace{4mm}
 
 ```{r}
+#| label: fig-corruption-vs-rank
+#| fig-cap: "Corruption Perception vs Country Rank"
+#| fig-alt: "Scatter plot showing corruption perception scores on x axis and country ranks on y axis. Points are color coded by rank groups."
 
+ggplot(happiness_2024, aes(x = corruption, y = rank)) +
+  geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1) +
+  scale_y_reverse() +  # Reverse so rank 1 is at top
+  scale_color_brewer(palette = "Set1", name = "Rank Group") +
+  labs(
+    title = "Corruption Perception vs Country Rank (2024)",
+    x = "Corruption Perception Score\n(Negative = Higher Corruption Perception)",
+    y = "Rank (1 = Happiest)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, margin = margin(b = 15)),
+    axis.title.x = element_text(margin = margin(t = 10)),  # Move x-axis label down
+    axis.title.y = element_text(margin = margin(r = 10)),  # Move y-axis label right
+    legend.position = "right",
+    plot.margin = margin(20, 20, 20, 20)  
+  )
 ```
 
 **Interpretation**:
+Overall, both the table and the graph for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
 
 ## 4. Counries ranking (?) or other graphs maybe
 
