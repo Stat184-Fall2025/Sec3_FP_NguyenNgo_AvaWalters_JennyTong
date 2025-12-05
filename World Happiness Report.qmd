@@ -149,7 +149,7 @@ Explanation
 
 ## Summary Statistics (? maybe to display what we have first then go into tables and figures)
 
-## Visualizations
+# Visualization
 
 ## 1. Life Evaluation vs Country Rank
 
