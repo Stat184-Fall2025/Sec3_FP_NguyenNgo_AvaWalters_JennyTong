@@ -136,13 +136,7 @@ summary_stats <- happiness_2024 %>%
 
 Explanation
 
-```{r display-visualization, echo=FALSE}
-# actual displaying stpe
-#| label: change-label-in-this-format
-#| tbl-cap: "caption for visualizaiton"
-# Step 10: 
-
-
+```{}
 ```
 
 \vspace{8mm}
@@ -157,10 +151,57 @@ Explanation
 
 ```{r}
 
+#| tbl-cap: "Life Evaluation Statistics by Rank Group"
+
+# Create rank groups first
+happiness_2024 <- happiness_2024 %>% 
+  mutate(
+    rank_group = cut(rank, 
+                     breaks = quantile(rank, probs = seq(0, 1, 0.2)),
+                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
+                     include.lowest = TRUE)
+  )
+
+# Create the summary table
+life_eval_summary <- happiness_2024 %>% 
+  group_by(`Rank Group` = rank_group) %>% 
+  summarize(
+    `Number of Countries` = n(),
+    `Avg. Life Evaluation` = round(mean(life_evaluation, na.rm = TRUE), 2),
+    `Min` = round(min(life_evaluation, na.rm = TRUE), 2),
+    `Max` = round(max(life_evaluation, na.rm = TRUE), 2),
+    `STDEV` = round(sd(life_evaluation, na.rm = TRUE), 2)
+  ) %>% 
+  arrange(`Rank Group`)
+
+knitr::kable(life_eval_summary)
 ```
 
-```{r}
+\vspace{4mm}
 
+```{r}
+#| label: fig-life-eval-vs-rank
+#| fig-cap: "Life Evaluation vs Country Rank"
+#| fig-alt: "Scatter plot showing life evaluation scores on x-axis and country ranks on y-axis. Points are color-coded by rank groups."
+
+ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
+  geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1) +
+  scale_y_reverse() +  # Reverse so rank 1 is at top
+  scale_color_brewer(palette = "Set1", name = "Rank Group") +
+  labs(
+    title = "Life Evaluation vs Country Rank (2024)",
+    x = "Life Evaluation Score (0-10 scale)",
+    y = "Rank (1 = Happiest)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, margin = margin(b = 15)),
+    axis.title.x = element_text(margin = margin(t = 10)),  # Move x-axis label down
+    axis.title.y = element_text(margin = margin(r = 10)),  # Move y-axis label right
+    legend.position = "right",
+    plot.margin = margin(20, 20, 20, 20)  # Add margin around entire plot
+  )
 ```
 
 **Interpretation**:
@@ -172,6 +213,8 @@ Explanation
 ```{r}
 
 ```
+
+\vspace{4mm}
 
 ```{r}
 
@@ -187,6 +230,8 @@ Explanation
 
 ```
 
+\vspace{4mm}
+
 ```{r}
 
 ```
@@ -200,6 +245,8 @@ Explanation
 ```{r}
 
 ```
+
+\vspace{4mm}
 
 ```{r}
 
