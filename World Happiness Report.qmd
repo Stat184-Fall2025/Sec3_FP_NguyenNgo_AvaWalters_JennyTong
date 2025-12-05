@@ -136,7 +136,7 @@ summary_stats <- happiness_2024 %>%
 
 Explanation
 
-```{}
+```         
 ```
 
 \vspace{8mm}
@@ -273,7 +273,6 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 
 **Interpretation**:
 
-
 # Discussion and Conclusions
 
 ## Key Findings
@@ -285,8 +284,6 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 3.  **Governance Importance**
 
 ## Limitations and Future Research
-
-## Recommendations (???)
 
 # Author Contributions
 
