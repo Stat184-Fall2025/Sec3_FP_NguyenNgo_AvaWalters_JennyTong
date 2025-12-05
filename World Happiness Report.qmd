@@ -29,64 +29,247 @@ execute:
 
 This report contains statistical analysis on ...
 
-1.  **fiasdjfl**
+1.  **Life Evaluation vs Rank:** Citizens' life satisfaction correlation with their country's happiness ranking.
+2.  **Economic Influence:** The relationship between GDP per capita and happiness index.
+3.  **Governance Impact:** Corruption perception effect happiness rankings.
 
-Each section presents distinct analytical approaches and findings.
+This analysis employs Exploratory Data Analysis techniques to find different relationships in data and provide insights into what contribute to a nation's happiness index.
 
+# Data Provenance and Ethical Considerations (??) {#sec-armed}
 
-# World Happiness Index {#sec-world}
+## FAIR (?)
 
-The analysis focuses specifically...
+## CARE (?)
 
-## Analysis and Visualization
+## Data Preparation
+
 \vspace{8mm}
 
 ```{r world-happiness-index-wrangling, include=FALSE}
-
  # Wrangling Code that will not be shown when rendered
 
-# STEP 1:
+# STEP 1: Load required pacakges
+library(tidyverse)
+library(readxl) # read excel file
+library(janitor)
 
-# STEP 2:
+# STEP 2: Load and clean the Excel dataset
+happiness_raw <- read_excel(
+  "/Applications/PSU/FALL 2025/STAT 184/week 12/nguyen_repo_practice/Sec-3_FP_NguyenNgo_AvaWalters_JennyTong/World Happiness Report Data Figure 2.1.xlsx",
+sheet = "Data for Figure 2.1 (2011–2024)"
+) %>%
+  # standardize column names
+  clean_names()
 
-# STEP 3:
+# STEP 3: Filter for 2024 data
+# select important columns
+happiness_2024 <-  happiness_raw %>% 
+  filter (year == 2024) %>% 
+  # rename columns
+  select(
+    country = country_name,
+    rank,
+    life_evaluation = life_evaluation_3_year_average,
+    gdp = explained_by_log_gdp_per_capita,
+    social_support = explained_by_social_support,
+    health_life_expectancy = explained_by_healthy_life_expectancy,
+    freedom = explained_by_freedom_to_make_life_choices,
+    generosity = explained_by_generosity,
+    corruption = explained_by_perceptions_of_corruption,
+    dystopia_residual
+  ) %>% 
+  # fix incomplete rows and convert ranks to integers
+  mutate(
+    rank = as.integer(rank),
+    across(c(life_evaluation:corruption), as.numeric)  
+  ) %>% 
+  filter(!is.na(rank), !is.na(life_evaluation))
 
-#...
+# STEP 4: Calculate the Sensitivity Metrics
+happiness_sensitivity <- happiness_2024 %>% 
+  # order by descending life evaluation
+  arrange(desc(life_evaluation)) %>% 
+  mutate(
+    life_eval_diff = life_evaluation - lead(life_evaluation), 
+    rank_diff = rank - lead(rank),
+    sensitivity = abs(rank_diff / life_eval_diff), # measures sensitivity
+    sensitivity_group = cut(sensitivity,
+                            breaks = c(0, 5, 10, 20, Inf),
+                            Labels = c("Low", "Medium", "High", "Very High")
+                            )
+  ) %>% 
+  filter(!is.na(sensitivity))
+
+# STEP 5: Compute Correlation of Factors w/ Rank
+factor_correlations <- happiness_2024 %>%
+select(rank, life_evaluation, gdp, corruption, social_support,
+health_life_expectancy, freedom, generosity) %>% 
+cor(use = "complete.obs") %>% # compute correlation matrix
+as.data.frame() %>%
+rownames_to_column("factor") %>% # convert rownames to a column
+select(factor, correlation_with_rank = rank)
+
+# STEP 6: Top 10 Happiest Countries Table
+top_10 <- happiness_2024 %>% 
+  # select 10 smallest ranks
+  slice_min(rank, n = 10) %>% 
+  select(country, rank, life_evaluation, gdp, corruption)
+
+# STEP 7: Create Bottom 10 Least Happiest Countries Table
+bottom_10 <- happiness_2024 %>% 
+  # select 10 largest ranks
+  slice_max(rank, n = 10) %>% 
+  select(country, rank, life_evaluation, gdp, corruption)
+
+# STEP 8: A Summary Statistics Table, if needed
+summary_stats <- happiness_2024 %>% 
+  summarize(
+    # count countries
+    n_countries = n(),
+    avg_life_eval = mean(life_evaluation, na.rm = TRUE),
+    avg_gdp = mean(gdp, na.rm = TRUE),
+    avg_corruption = mean(corruption, na.rm = TRUE),
+    life_eval_range = max(life_evaluation) - min(life_evaluation),
+    rank_range = max(rank) - min(rank)
+  )
 ```
 
-```{r display-visualization, echo=FALSE}
-# actual displaying stpe
-#| label: change-label-in-this-format 
-#| tbl-cap: "caption for visualizaiton" # caption for figure/graph
-#| fig-alt: "C" # alt caption
-# Step 10: 
+Explanation
 
-
+```{}
 ```
 
 \vspace{8mm}
 
-## Narrative Text 
+## Summary Statistics (? maybe to display what we have first then go into tables and figures)
 
+# Visualization
 
+## 1. Life Evaluation vs Country Rank
 
+\vspace{4mm}
 
-------------------------------------------------------------------------
+```{r}
 
-# Data References
+#| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
+# Create rank groups first
+happiness_2024 <- happiness_2024 %>% 
+  mutate(
+    rank_group = cut(rank, 
+                     breaks = quantile(rank, probs = seq(0, 1, 0.2)),
+                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
+                     include.lowest = TRUE)
+  )
 
+# Create the summary table
+life_eval_summary <- happiness_2024 %>% 
+  group_by(`Rank Group` = rank_group) %>% 
+  summarize(
+    `Number of Countries` = n(),
+    `Avg. Life Evaluation` = round(mean(life_evaluation, na.rm = TRUE), 2),
+    `Min` = round(min(life_evaluation, na.rm = TRUE), 2),
+    `Max` = round(max(life_evaluation, na.rm = TRUE), 2),
+    `STDEV` = round(sd(life_evaluation, na.rm = TRUE), 2)
+  ) %>% 
+  arrange(`Rank Group`)
 
+knitr::kable(life_eval_summary)
+```
 
-------------------------------------------------------------------------
+\vspace{4mm}
 
-# Author Contribution
+```{r}
+#| label: fig-life-eval-vs-rank
+#| fig-cap: "Life Evaluation vs Country Rank"
+#| fig-alt: "Scatter plot showing life evaluation scores on x-axis and country ranks on y-axis. Points are color-coded by rank groups."
 
+ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
+  geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1) +
+  scale_y_reverse() +  # Reverse so rank 1 is at top
+  scale_color_brewer(palette = "Set1", name = "Rank Group") +
+  labs(
+    title = "Life Evaluation vs Country Rank (2024)",
+    x = "Life Evaluation Score (0-10 scale)",
+    y = "Rank (1 = Happiest)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, margin = margin(b = 15)),
+    axis.title.x = element_text(margin = margin(t = 10)),  # Move x-axis label down
+    axis.title.y = element_text(margin = margin(r = 10)),  # Move y-axis label right
+    legend.position = "right",
+    plot.margin = margin(20, 20, 20, 20)  # Add margin around entire plot
+  )
+```
 
+**Interpretation**:
 
+## 2. GDP Contribution vs Country Rank
 
+\vspace{4mm}
 
+```{r}
 
-------------------------------------------------------------------------
+```
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+**Interpretation**:
+
+## 3. Corruption Perception vs Country Rank
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+**Interpretation**:
+
+## 4. Counries ranking (?) or other graphs maybe
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+\vspace{4mm}
+
+```{r}
+
+```
+
+**Interpretation**"
+
+# Discussion and Conclusions
+
+## Key Findings
+
+1.  **Life Evaluation**:
+
+2.  **Economic Foundation**
+
+3.  **Governance Importance**
+
+## Limitations and Future Research
+
+## Recommendations (???)
+
+# Author Contributions
+
+# References
 
 # Code Appendix
