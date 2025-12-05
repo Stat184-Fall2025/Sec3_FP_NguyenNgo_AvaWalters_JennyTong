@@ -211,7 +211,21 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 \vspace{4mm}
 
 ```{r}
+#| tbl-cap: "GDP Contribution Statistics by Rank Group"
 
+# Create GDP summary table
+gdp_summary <- happiness_2024 %>% 
+  group_by(`Rank Group` = rank_group) %>% 
+  summarize(
+    `Number of Countries` = n(),
+    `Avg. GDP Contribution` = round(mean(gdp, na.rm = TRUE), 2),
+    `Min` = round(min(gdp, na.rm = TRUE), 2),
+    `Max` = round(max(gdp, na.rm = TRUE), 2),
+    `STDEV` = round(sd(gdp, na.rm = TRUE), 2)
+  ) %>% 
+  arrange(`Rank Group`)
+
+knitr::kable(gdp_summary)
 ```
 
 \vspace{4mm}
