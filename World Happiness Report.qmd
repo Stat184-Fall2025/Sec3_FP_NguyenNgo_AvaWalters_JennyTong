@@ -273,21 +273,6 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 
 **Interpretation**:
 
-## 4. Counries ranking (?) or other graphs maybe
-
-\vspace{4mm}
-
-```{r}
-
-```
-
-\vspace{4mm}
-
-```{r}
-
-```
-
-**Interpretation**"
 
 # Discussion and Conclusions
 
