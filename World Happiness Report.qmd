@@ -316,8 +316,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
   )
 ```
 
-**Interpretation**:
-Overall, both the table and the graph for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
+**Interpretation**: Overall, both the table and the graph for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
 
 # Discussion and Conclusions
 
