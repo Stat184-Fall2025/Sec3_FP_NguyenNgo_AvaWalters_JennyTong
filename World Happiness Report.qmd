@@ -231,7 +231,28 @@ knitr::kable(gdp_summary)
 \vspace{4mm}
 
 ```{r}
+#| label: fig-gdp-vs-rank
+#| fig-cap: "GDP Contribution vs Country Rank"
+#| fig-alt: "Scatter plot showing GDP contribution scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
 
+ggplot(happiness_2024, aes(x = gdp, y = rank)) +
+  geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1) +
+  scale_y_reverse() +
+  scale_color_brewer(palette = "Set1", name = "Rank Group") +
+  labs(
+    title = "GDP Contribution vs Country Rank (2024)",
+    x = "GDP Contribution Score (Log GDP per capita)",
+    y = "Rank (1 = Happiest)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, margin = margin(b = 15)),
+    axis.title.x = element_text(margin = margin(t = 10)),  # move x-axis label down
+    axis.title.y = element_text(margin = margin(r = 10)),  # move y-axis label right
+    legend.position = "right",
+    plot.margin = margin(20, 20, 20, 20)  # add margin around entire plot
+  )
 ```
 
 **Interpretation**:
