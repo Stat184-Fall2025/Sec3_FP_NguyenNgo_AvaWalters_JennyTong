@@ -255,7 +255,7 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
   )
 ```
 
-**Interpretation**:
+**Interpretation**: The table and graph show that as GDP and rank have a relatively strong, positive, linear relationship. This means that as GDP increases then so will rank. This means that countries that have higher GDP are more likely to have a higher rank and be more well off. If a country is struggling to create world wide markets, new goods, and build capital, than their government and people are going to struggle. This means the output of the country will be lower and thus rank will reflect this. You want your country to have a high GDP!
 
 ## 3. Corruption Perception vs Country Rank
 
