@@ -364,11 +364,11 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 ## Key Findings
 
-1.  **Life Evaluation**: Life evaluation is the strongest predictor of a happiness rank. Countries with higher average life evaluation scores appear in higher happiness ranks. This forms an almost perfect linear relationship.
+1.  **Life Evaluation**: Life evaluation is the one of the strongest predictor of a happiness rank. Countries with higher average life evaluation scores appear in higher happiness ranks. This forms an almost perfect linear relationship.
 
-2.  **Economic Foundation**: Higher GDP contribution 
+2.  **Economic Foundation**: Higher GDP contribution strongly correlates to better happiness rankings. Wealthier countries tend to provide better living standards for their citizens. This supports the national well-being.
 
-3.  **Governance Importance**
+3.  **Governance Importance**: Countries with higher corruption perception scores generally rank higher in happiness. This shows that trust in government is most likely linked to national well-being.
 
 # Limitations and Future Research {#sec-limits}
 
