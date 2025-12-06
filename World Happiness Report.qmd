@@ -17,6 +17,7 @@ format:
     tbl-cap-location: top
     fig-cap-location: top
 
+
 # prevent warnings and messages
 execute:
   echo: false
@@ -106,54 +107,7 @@ happiness_2024 <-  happiness_raw %>%
   ) %>% 
   filter(!is.na(rank), !is.na(life_evaluation))
 
-# STEP 4: Calculate the Sensitivity Metrics
-happiness_sensitivity <- happiness_2024 %>% 
-  # order by descending life evaluation
-  arrange(desc(life_evaluation)) %>% 
-  mutate(
-    life_eval_diff = life_evaluation - lead(life_evaluation), 
-    rank_diff = rank - lead(rank),
-    sensitivity = abs(rank_diff / life_eval_diff), # measures sensitivity
-    sensitivity_group = cut(sensitivity,
-                            breaks = c(0, 5, 10, 20, Inf),
-                            Labels = c("Low", "Medium", "High", "Very High")
-                            )
-  ) %>% 
-  filter(!is.na(sensitivity))
-
-# STEP 5: Compute Correlation of Factors w/ Rank
-factor_correlations <- happiness_2024 %>%
-select(rank, life_evaluation, gdp, corruption, social_support,
-health_life_expectancy, freedom, generosity) %>% 
-cor(use = "complete.obs") %>% # compute correlation matrix
-as.data.frame() %>%
-rownames_to_column("factor") %>% # convert rownames to a column
-select(factor, correlation_with_rank = rank)
-
-# STEP 6: Top 10 Happiest Countries Table
-top_10 <- happiness_2024 %>% 
-  # select 10 smallest ranks
-  slice_min(rank, n = 10) %>% 
-  select(country, rank, life_evaluation, gdp, corruption)
-
-# STEP 7: Create Bottom 10 Least Happiest Countries Table
-bottom_10 <- happiness_2024 %>% 
-  # select 10 largest ranks
-  slice_max(rank, n = 10) %>% 
-  select(country, rank, life_evaluation, gdp, corruption)
-
-# STEP 8: A Summary Statistics Table, if needed
-summary_stats <- happiness_2024 %>% 
-  summarize(
-    # count countries
-    n_countries = n(),
-    avg_life_eval = mean(life_evaluation, na.rm = TRUE),
-    avg_gdp = mean(gdp, na.rm = TRUE),
-    avg_corruption = mean(corruption, na.rm = TRUE),
-    life_eval_range = max(life_evaluation) - min(life_evaluation),
-    rank_range = max(rank) - min(rank)
-  )
-
+# STEP 5: Create Rank Groups
 happiness_2024 <- happiness_2024 %>% 
   mutate(
     rank_group = cut(rank, 
@@ -218,7 +172,6 @@ knitr::kable(summary_table,
 #| label: tbl-life-evaluation
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
-
 # Create the summary table
 life_eval_summary <- happiness_2024 %>% 
   group_by(`Rank Group` = rank_group) %>% 
@@ -264,7 +217,7 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
   )
 ```
 
-**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the Top 20% have the highest life evaluation (around 6.90). Those in the Bottom 20% score much lower with a score of approximately 3.80. This pattern is consistent across all rank groups as shown in @tbl-life-evaluation. The scatter plot @fig-life-eval-vs-rank displays a fitted line that matches the table shown. The upward-sloping line shows that life evaluation is a strong predictor oc a country happiness rank.
+**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the Top 20% have the highest life evaluation (around 6.90). Those in the Bottom 20% score much lower with a score of approximately 3.80. This pattern is consistent across all rank groups as shown in @tbl-life-evaluation. The scatter plot @fig-life-eval-vs-rank displays a fitted line that matches the table shown. The upward-sloping line shows that life evaluation is a strong predictor of a country happiness rank.
 
 ## 2. GDP Contribution vs Country Rank
 
