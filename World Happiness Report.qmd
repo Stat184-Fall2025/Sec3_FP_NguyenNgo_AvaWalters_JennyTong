@@ -16,18 +16,13 @@ format:
     fig-pos: "H"
     tbl-cap-location: top
     fig-cap-location: top
- 
+
 # prevent warnings and messages
 execute:
   echo: false
   warning: false
   message: false
   error: false
-  
-bibliography: references.bib
-csl: MLA9.csl
-citation-style: MLA9.csl
-
 ---
 
 # Introduction {#sec-introduction}
@@ -43,6 +38,7 @@ This analysis employs Exploratory Data Analysis techniques to find different rel
 # Data Provenance and Ethical Considerations {#sec-data-ethics}
 
 ## Data Source and Selection
+
 The data for this analysis originates from the World Happiness Report 2024 dataset, which contains annual data from 2011 through 2024. For this study, we specifically extracted and analyzed the 2024 data subset only to examine the patterns in national happiness determinants. The complete dataset is publicly available as an Excel file titled "World Happiness Report Data Figure 2.1.xlsx" containing the "Data for Figure 2.1 (2011–2024)" sheet.
 
 ## FAIR Principles
@@ -157,6 +153,15 @@ summary_stats <- happiness_2024 %>%
     life_eval_range = max(life_evaluation) - min(life_evaluation),
     rank_range = max(rank) - min(rank)
   )
+
+happiness_2024 <- happiness_2024 %>% 
+  mutate(
+    rank_group = cut(rank, 
+                     breaks = quantile(rank, probs = seq(0, 1, 0.2), na.rm = TRUE),
+                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
+                     include.lowest = TRUE)
+  )
+
 ```
 
 \vspace{8mm}
@@ -210,17 +215,9 @@ knitr::kable(summary_table,
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
-#| tbl-cap: "Life Evaluation Statistics by Rank Group"
 #| label: tbl-life-evaluation
+#| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
-# Create rank groups first
-happiness_2024 <- happiness_2024 %>% 
-  mutate(
-    rank_group = cut(rank, 
-                     breaks = quantile(rank, probs = seq(0, 1, 0.2)),
-                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
-                     include.lowest = TRUE)
-  )
 
 # Create the summary table
 life_eval_summary <- happiness_2024 %>% 
@@ -339,14 +336,6 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 #| label: tbl-corruption-rank
 
 library(dplyr)
-# create rank groups first 
-happiness_2024 <- happiness_2024 %>% 
-  mutate(
-    rank_group = cut(rank, 
-                     breaks = quantile(rank, probs = seq(0, 1, 0.2), na.rm = TRUE),
-                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
-                     include.lowest = TRUE)
-  )
 
 # create the summary table for corruption
 corruption_summary <- happiness_2024 %>% 
@@ -419,7 +408,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 -   **Cultural Comparisons:** Examine how different culture groups may highlight the differences in how happiness is influenced.
 
--   **Additional Key Metrics**: Otherfactors such as education access, healthcare access, political stability, etc. may influence happiness.
+-   **Additional Key Metrics**: Other factors such as education access, healthcare access, political stability, etc. may influence happiness.
 
 # Author Contributions {#sec-author-contributions}
 
@@ -428,9 +417,3 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 2.  Jenny Tong: Imported the dataset and did a quality check to identify errors and inconsistencies. Ensured that the project fully met the assignment guidelines and contributed to the analysis and interpretation of the corruption perception section.
 
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
-
-# References {#sec-references}
-- Data for this analysis comes from the World Happiness Report 2024 [@worldhappiness2024].  
-- Methodology is based on the Gallup World Poll Figure 2.1 data [@gallup2024] and Helliwell et al. [@helliwell2025].
-
-
