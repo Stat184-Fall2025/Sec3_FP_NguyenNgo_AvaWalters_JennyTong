@@ -23,6 +23,11 @@ execute:
   warning: false
   message: false
   error: false
+  
+bibliography: references.bib
+csl: MLA9.csl
+citation-style: MLA9.csl
+
 ---
 
 # Introduction {#sec-introduction}
@@ -36,6 +41,9 @@ This report analyzes and examines the 2024 World Happiness Report data to unders
 This analysis employs Exploratory Data Analysis techniques to find different relationships in data and provide insights into what contribute to a nation's happiness index.
 
 # Data Provenance and Ethical Considerations {#sec-data-ethics}
+
+## Data Source and Selection
+The data for this analysis originates from the World Happiness Report 2024 dataset, which contains annual data from 2011 through 2024. For this study, we specifically extracted and analyzed the 2024 data subset only to examine the patterns in national happiness determinants. The complete dataset is publicly available as an Excel file titled "World Happiness Report Data Figure 2.1.xlsx" containing the "Data for Figure 2.1 (2011–2024)" sheet.
 
 ## FAIR Principles
 
@@ -422,5 +430,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
 
 # References {#sec-references}
+- Data for this analysis comes from the World Happiness Report 2024 [@worldhappiness2024].  
+- Methodology is based on the Gallup World Poll Figure 2.1 data [@gallup2024] and Helliwell et al. [@helliwell2025].
 
-# Code Appendix
+
