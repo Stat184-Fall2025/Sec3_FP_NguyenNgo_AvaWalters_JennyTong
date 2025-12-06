@@ -107,14 +107,20 @@ happiness_2024 <-  happiness_raw %>%
   ) %>% 
   filter(!is.na(rank), !is.na(life_evaluation))
 
-# STEP 5: Create Rank Groups
-happiness_2024 <- happiness_2024 %>% 
+# STEP 4: Calculate the Sensitivity Metrics
+happiness_sensitivity <- happiness_2024 %>% 
+  # order by descending life evaluation
+  arrange(desc(life_evaluation)) %>% 
   mutate(
-    rank_group = cut(rank, 
-                     breaks = quantile(rank, probs = seq(0, 1, 0.2), na.rm = TRUE),
-                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
-                     include.lowest = TRUE)
-  )
+    life_eval_diff = life_evaluation - lead(life_evaluation), 
+    rank_diff = rank - lead(rank),
+    sensitivity = abs(rank_diff / life_eval_diff), # measures sensitivity
+    sensitivity_group = cut(sensitivity,
+                            breaks = c(0, 5, 10, 20, Inf),
+                            Labels = c("Low", "Medium", "High", "Very High")
+                            )
+  ) %>% 
+  filter(!is.na(sensitivity))
 
 ```
 
@@ -171,6 +177,15 @@ knitr::kable(summary_table,
 
 #| label: tbl-life-evaluation
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
+
+# Create rank groups first
+happiness_2024 <- happiness_2024 %>% 
+  mutate(
+    rank_group = cut(rank, 
+                     breaks = quantile(rank, probs = seq(0, 1, 0.2)),
+                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
+                     include.lowest = TRUE)
+  )
 
 # Create the summary table
 life_eval_summary <- happiness_2024 %>% 
