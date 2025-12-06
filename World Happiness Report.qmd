@@ -61,6 +61,9 @@ This analysis employs Exploratory Data Analysis techniques to find different rel
 
 ```{r world-happiness-index-wrangling, include=FALSE}
  # Wrangling Code that will not be shown when rendered
+# CODE STYLEL GUIDE: Tidyverse Style Guide
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: Jenny Tong
 
 # STEP 1: Load required pacakges
 library(tidyverse)
@@ -155,6 +158,9 @@ summary_stats <- happiness_2024 %>%
 This dataset includes `r nrow(happiness_2024)` countries.
 
 ```{r}
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: All
+
 # STEP 9: Create a Summary Table 
 summary_table <- data.frame(
   `Dataset Overview` = c(
@@ -193,6 +199,9 @@ knitr::kable(summary_table,
 \vspace{4mm}
 
 ```{r}
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: All
+
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
 #| label: tbl-life-evaluation
 
@@ -223,6 +232,9 @@ knitr::kable(life_eval_summary)
 \vspace{4mm}
 
 ```{r}
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: Jenny Tong, Ava Walters
+
 #| label: fig-life-eval-vs-rank
 #| fig-cap: "Life Evaluation vs Country Rank"
 #| fig-alt: "Scatter plot showing life evaluation scores on x-axis and country ranks on y-axis. Points are color-coded by rank groups."
@@ -254,6 +266,9 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 \vspace{4mm}
 
 ```{r}
+# PRIMARY AUTHOR: Ava Walters
+# REVIEWER: Nguyen Ngo
+
 #| tbl-cap: "GDP Contribution Statistics by Rank Group"
 #| label: tbl-gdp-rank
 
@@ -275,6 +290,9 @@ knitr::kable(gdp_summary)
 \vspace{4mm}
 
 ```{r}
+# PRIMARY AUTHOR: Ava Walters
+# REVIEWER: Nguyen Ngo
+
 #| label: fig-gdp-vs-rank
 #| fig-cap: "GDP Contribution vs Country Rank"
 #| fig-alt: "Scatter plot showing GDP contribution scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
@@ -306,6 +324,9 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 \vspace{4mm}
 
 ```{r}
+# PRIMARY AUTHOR: Jenny Tong
+# REVIEWER: Nguyen Ngo
+
 #| tbl-cap: "Corruption Perception Statistics by Rank Group"
 #| label: tbl-corruption-rank
 
@@ -337,6 +358,9 @@ knitr::kable(corruption_summary)
 \vspace{4mm}
 
 ```{r}
+# PRIMARY AUTHOR: Jenny Tong
+# REVIEWER: Nguyen Ngo
+
 #| label: fig-corruption-vs-rank
 #| fig-cap: "Corruption Perception vs Country Rank"
 #| fig-alt: "Scatter plot showing corruption perception scores on x axis and country ranks on y axis. Points are color coded by rank groups."
