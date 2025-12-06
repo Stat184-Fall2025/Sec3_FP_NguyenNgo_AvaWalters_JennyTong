@@ -175,7 +175,7 @@ knitr::kable(summary_table,
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
-#| label: tbl-life-evaluation
+#| tbl-life-evaluation
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
 # Create rank groups first
@@ -208,7 +208,7 @@ knitr::kable(life_eval_summary)
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: Jenny Tong, Ava Walters
 
-#| label: fig-life-eval-vs-rank
+#| fig-life-eval-vs-rank
 #| fig-cap: "Life Evaluation vs Country Rank"
 #| fig-alt: "Scatter plot showing life evaluation scores on x-axis and country ranks on y-axis. Points are color-coded by rank groups."
 
