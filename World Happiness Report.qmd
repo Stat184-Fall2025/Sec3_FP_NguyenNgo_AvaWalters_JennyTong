@@ -388,6 +388,12 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 # Author Contributions {#sec-author-contributions}
 
+1.  Nguyen Ngo: Managed the GitHub repository, formatted and structured the report, led the data wrangling process, and rendered the full Quarto document. Created the summary statistics section and conducted the life evaluation analysis and intepretation. Handled technical coding and ensured the accuracy of the analytical components.
+
+2.  Jenny Tong: Imported the dataset and did a quality check to identify errors and inconsistencies. Ensured that the project fully met the assignment guidelines and contributed to the analysis and interpretation of the corruption perception section.
+
+3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
+
 # References {#sec-references}
 
 # Code Appendix
