@@ -380,6 +380,12 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 -   **Correlation ≠ Causation:** The key metrics used above simply show the relationships with happiness rankings. They do not prove that there is a causation on higher happiness rankings.
 
+## Future Research:
+
+-   **Cultural Comparisons:** Examine how different culture groups may highlight the differences in how happiness is influenced.
+
+-   **Additional Key Metrics**: Otherfactors such as education access, healthcare access, political stability, etc. may influence happiness.
+
 # Author Contributions {#sec-author-contributions}
 
 # References {#sec-references}
