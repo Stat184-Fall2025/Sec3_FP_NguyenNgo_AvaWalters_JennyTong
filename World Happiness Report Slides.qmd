@@ -2,28 +2,12 @@
 title: "World Happiness Index: Exploring Key Determinants of National Happiness"
 author: "Nguyen Ngo, Jenny Tong, Ava Walters"
 date: "December 07 2025"
-format: 
-  pdf:
-    documentclass: article
-    # margin: 1 in all sides
-    geometry:
-      - margin=1in
-    
-    # no table of content
-    toc: false
-    
-    # figures with captions on top
-    fig-pos: "H"
-    tbl-cap-location: top
-    fig-cap-location: top
-
-
-# prevent warnings and messages
-execute:
-  echo: false
-  warning: false
-  message: false
-  error: false
+format:
+  revealjs:
+    slideNumber: true
+    theme: simple
+    css: styles.css
+    smaller: true
 ---
 
 # Introduction {#sec-introduction}
@@ -385,8 +369,6 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 2.  Jenny Tong: Imported the dataset and did a quality check to identify errors and inconsistencies. Ensured that the project fully met the assignment guidelines and contributed to the analysis and interpretation of the corruption perception section.
 
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
-
-
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE, include=FALSE}
 ```
