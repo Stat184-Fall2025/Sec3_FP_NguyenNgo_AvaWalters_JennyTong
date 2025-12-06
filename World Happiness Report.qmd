@@ -25,9 +25,9 @@ execute:
   error: false
 ---
 
-# Introduction
+# Introduction {#sec-introduction}
 
-This report contains statistical analysis on ...
+This report analyzes and examines the 2024 World Happiness Report data to understand how key factors, specifically life evaluation, economic prosperity (GDP) and governance (corruption perception), influence a country's happiness rankings. The key factors we are interested in studying are:
 
 1.  **Life Evaluation vs Rank:** Citizens' life satisfaction correlation with their country's happiness ranking.
 2.  **Economic Influence:** The relationship between GDP per capita and happiness index.
@@ -35,13 +35,27 @@ This report contains statistical analysis on ...
 
 This analysis employs Exploratory Data Analysis techniques to find different relationships in data and provide insights into what contribute to a nation's happiness index.
 
-# Data Provenance and Ethical Considerations (??) {#sec-armed}
+# Data Provenance and Ethical Considerations {#sec-data-ethics}
 
-## FAIR (?)
+## FAIR Principles
 
-## CARE (?)
+-   **Find-able:** The data is publicly available through the World Happiness Report website.
 
-## Data Preparation
+-   **Accessible**: Data is available in a Excel with clear documentation.
+
+-   **Inter-operable**: Uses standard variables and scales that are compatible with a social science research
+
+-   **Reusable**: Comes with a detailed methodology (a planning document) report
+
+## CARE Principles
+
+-   **Collective Benefit**: The data helps with the understanding of well-being for policy implementation.
+
+-   **Authority to Control**: The original data collected by Gallup World Poll, an ongoing global survey that tracks worldwide ongoing issues.
+
+-   **Responsibility**: Published with transparency that includes a methodology and limitations.
+
+-   **Ethics**: Using ethical research standards to uphold privacy protection.
 
 \vspace{8mm}
 
@@ -136,14 +150,16 @@ summary_stats <- happiness_2024 %>%
 
 \vspace{8mm}
 
-## Summary Statistics
+# Summary Statistics {#sec-visualization}
+
+The dataset includes 147 countries.
+
 ```{r}
 # STEP 9: Create a Summary Table 
 summary_table <- data.frame(
   `Dataset Overview` = c(
     "Total countries analyzed",
     "Life evaluation score range",
-    "Rank distribution",
     "Average life evaluation score",
     "Average GDP contribution",
     "Average corruption perception"
@@ -154,8 +170,6 @@ summary_table <- data.frame(
     # life evaluation range
     paste(round(min(happiness_2024$life_evaluation), 2), "to", 
           round(max(happiness_2024$life_evaluation), 2)),
-    # rank range
-    paste("1 to", max(happiness_2024$rank)),
     # average life evaluation
     paste(round(mean(happiness_2024$life_evaluation), 2)),
     # average GDP contribution
@@ -346,7 +360,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 **Interpretation**: Overall, both the table and the graph for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
 
-# Discussion and Conclusions
+{#sec-conclusions} \# Discussion and Conclusions
 
 ## Key Findings
 
@@ -356,10 +370,10 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 3.  **Governance Importance**
 
-## Limitations and Future Research
+{#sec-limits} \## Limitations and Future Research
 
-# Author Contributions
+{#sec-contributions} \# Author Contributions
 
-# References
+{#sec-references} \# References
 
 # Code Appendix
