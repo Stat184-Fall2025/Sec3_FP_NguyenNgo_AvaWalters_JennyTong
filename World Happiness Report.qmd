@@ -134,14 +134,43 @@ summary_stats <- happiness_2024 %>%
   )
 ```
 
-Explanation
-
-```         
-```
-
 \vspace{8mm}
 
-## Summary Statistics (? maybe to display what we have first then go into tables and figures)
+## Summary Statistics
+```{r}
+# STEP 9: Create a Summary Table 
+summary_table <- data.frame(
+  `Dataset Overview` = c(
+    "Total countries analyzed",
+    "Life evaluation score range",
+    "Rank distribution",
+    "Average life evaluation score",
+    "Average GDP contribution",
+    "Average corruption perception"
+  ),
+  Value = c(
+    # total countries
+    as.character(nrow(happiness_2024)),
+    # life evaluation range
+    paste(round(min(happiness_2024$life_evaluation), 2), "to", 
+          round(max(happiness_2024$life_evaluation), 2)),
+    # rank range
+    paste("1 to", max(happiness_2024$rank)),
+    # average life evaluation
+    paste(round(mean(happiness_2024$life_evaluation), 2)),
+    # average GDP contribution
+    paste(round(mean(happiness_2024$gdp, na.rm = TRUE), 2)),
+    # average corruption (higher = less corruption perceived)
+    paste(round(mean(happiness_2024$corruption, na.rm = TRUE), 2))
+  )
+)
+
+# STEP 10: Display
+knitr::kable(summary_table, 
+             col.names = c("Dataset Overview", "Value"),
+             align = c("l", "l"),
+             caption = "Summary Statistics: World Happiness Report 2024 Dataset")
+```
 
 # Visualization
 
@@ -150,7 +179,6 @@ Explanation
 \vspace{4mm}
 
 ```{r}
-
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
 # Create rank groups first
