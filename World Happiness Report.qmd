@@ -372,6 +372,14 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 # Limitations and Future Research {#sec-limits}
 
+## Limitations:
+
+-   **Data Constraints:** The dataset relies on a self reported survey by Gallup World Poll. This may include bias, uneven sampling, and even cultural differences in how people perceive satisfaction.
+
+-   **Variable Simplicity:** Factors like GDP, social support and governance are represented by a singular metric which could oversimplify what reality is like.
+
+-   **Correlation ≠ Causation:** The key metrics used above simply show the relationships with happiness rankings. They do not prove that there is a causation on higher happiness rankings.
+
 # Author Contributions {#sec-author-contributions}
 
 # References {#sec-references}
