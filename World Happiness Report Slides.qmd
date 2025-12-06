@@ -188,6 +188,7 @@ knitr::kable(life_eval_summary)
 
 \vspace{4mm}
 
+::: {.fragment}
 ```{r}
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: Jenny Tong, Ava Walters
@@ -215,6 +216,7 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
     plot.margin = margin(20, 20, 20, 20)  # Add margin around entire plot
   )
 ```
+:::
 
 **Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the Top 20% have the highest life evaluation (around 6.90). Those in the Bottom 20% score much lower with a score of approximately 3.80. This pattern is consistent across all rank groups as shown in @tbl-life-evaluation. The scatter plot @fig-life-eval-vs-rank displays a fitted line that matches the table shown. The upward-sloping line shows that life evaluation is a strong predictor of a country happiness rank.
 
@@ -245,7 +247,7 @@ knitr::kable(gdp_summary)
 ```
 
 \vspace{4mm}
-
+::: {.fragment}
 ```{r}
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
@@ -273,7 +275,7 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
     plot.margin = margin(20, 20, 20, 20)  # add margin around entire plot
   )
 ```
-
+:::
 **Interpretation**: The @tbl-gdp-rank and @fig-gdp-vs-rank show that as GDP and rank have a relatively strong, positive, linear relationship. This means that as GDP increases then so will rank. This means that countries that have higher GDP are more likely to have a higher rank and be more well off. If a country is struggling to create world wide markets, new goods, and build capital, than their government and people are going to struggle. This means the output of the country will be lower and thus rank will reflect this. You want your country to have a high GDP!
 
 ## 3. Corruption Perception vs Country Rank
@@ -305,7 +307,7 @@ knitr::kable(corruption_summary)
 ```
 
 \vspace{4mm}
-
+::: {.fragment}
 ```{r}
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
@@ -333,7 +335,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
     plot.margin = margin(20, 20, 20, 20)  
   )
 ```
-
+:::
 **Interpretation**: Overall, both the @tbl-corruption-rank and the @fig-corruption-vs-rank for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
 
 # Discussion and Conclusions {#sec-conclusions}

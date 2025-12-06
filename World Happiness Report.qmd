@@ -343,8 +343,8 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
   theme_minimal() +
   theme(
     plot.title = element_text(face = "bold", size = 14, margin = margin(b = 15)),
-    axis.title.x = element_text(margin = margin(t = 10)),  # Move x-axis label down
-    axis.title.y = element_text(margin = margin(r = 10)),  # Move y-axis label right
+    axis.title.x = element_text(margin = margin(t = 10)),  
+    axis.title.y = element_text(margin = margin(r = 10)),  
     legend.position = "right",
     plot.margin = margin(20, 20, 20, 20)  
   )
