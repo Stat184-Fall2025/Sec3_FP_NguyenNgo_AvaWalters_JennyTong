@@ -290,9 +290,9 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 \vspace{4mm}
 
 ```{r}
-library(dplyr)
 #| tbl-cap: "Corruption Perception Statistics by Rank Group"
 
+library(dplyr)
 # create rank groups first 
 happiness_2024 <- happiness_2024 %>% 
   mutate(
