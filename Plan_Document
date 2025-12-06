@@ -1,10 +1,12 @@
+
+# Overall Plan Document
 1. Find data about our chosen topic, World Happiness Index
 2. Upload the 2025 World Happiness Index report
 3. Wrangle the data so it only shows the year 2024 and the countries that reported data for the year. Additionally all countries should have their own row and each variable should have their own column
 4. Create a hypothesis about how these factors effect overall rank for our data analysis: How do factors such as life evaluation, GDP, and governmental corruption shape the overall rank of a country on the World Happiness Index. Additionally we are looking at the sensitivity of rank when any of these factors slightly increase or decrease.
-    - Hypothesis: "As corruption increases, rank will increase (become worse). As GDP increases, rank will decrease (become better). As life evaluation increases, rank will decrease (become better). Rank will be very sensitive to small changes within a countries change of their own variables and also sensitive to the betterment or wrsening of other country's variables
-5. Create 3 seperate tables for the different variables along the x-axis (life evaluation, GDP, and corruption)
+    - Hypothesis: "As corruption increases, rank will increase (become worse). As GDP increases, rank will decrease (become better). As life evaluation increases, rank will decrease (become better). Rank will be very sensitive to small changes within a countries change of their own variables and also sensitive to the betterment or worsening of other country's variables
+5. Create 3 separate tables for the different variables along the x-axis (life evaluation, GDP, and corruption)
 6. Create 3 graphs that correspond to the 3 tables above which represent the relationships between the chosen variables and rank (which will be on the y-axis for all)
 7. Reflect on the goal of the statistical analysis and be prepared to solidify or alter the original hypothesis above
 8. Compose all information in a formal write up (QMD and PDF file)
-    - Include all data code, tables, graphs, data refernces, contributions, and a coding appendix (also any other additional text that is imperative for the viewer to understand the full picture of what we have done)
+    - Include all data code, tables, graphs, data references, contributions, and a coding appendix (also any other additional text that is imperative for the viewer to understand the full picture of what we have done)
