@@ -1,36 +1,13 @@
 ---
-title: "World Happiness Index: Exploring Key Factorss of National Happiness"
+title: "World Happiness Index: Exploring Key Determinants of National Happiness"
 author: "Nguyen Ngo, Jenny Tong, Ava Walters"
 date: "December 07 2025"
-format: 
-  pdf:
-    
-    citation-style: mla
-    documentclass: article
-    # margin: 1 in all sides
-    geometry:
-      - margin=1in
-    
-    # no table of content
-    toc: false
-    
-    # figures with captions on top
-    fig-pos: "H"
-    tbl-cap-location: top
-    fig-cap-location: top
-
-
-# prevent warnings and messages
-execute:
-  echo: false
-  warning: false
-  message: false
-  error: false
-  
-# csl, bibliography, reference
-bibliography: references.bib
-csl: mla9.csl
-reference-location: section
+format:
+  revealjs:
+    slideNumber: true
+    theme: simple
+    css: styles.css
+    smaller: true
 ---
 
 # Introduction {#sec-introduction}
@@ -210,7 +187,7 @@ knitr::kable(life_eval_summary)
 ```
 
 \vspace{4mm}
-
+::: {.fragment}
 ```{r life-eval-plot}
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: Jenny Tong, Ava Walters
@@ -239,15 +216,10 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
     plot.margin = margin(20, 20, 20, 20)  # Add margin around entire plot
   )
 ```
-
-See the table (@tbl-life-eval) and figure (@fig-life-plot).
-
-**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the Top 20% have the highest life evaluation (around 6.90). Those in the Bottom 20% score much lower with a score of approximately 3.80. This pattern is consistent across all rank groups as shown in @tbl-life-eval. The scatter plot @fig-life-plot displays a fitted line that matches the table shown. The upward-sloping line shows that life evaluation is a strong predictor of a country's happiness rank.
-
-## 2. GDP Contribution vs Country Rank
+:::
 
 \vspace{4mm}
-
+## 2. GDP Contribution vs Country Rank
 ```{r gdp-table}
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
@@ -271,6 +243,7 @@ knitr::kable(gdp_summary)
 
 \vspace{4mm}
 
+::: {.fragment}
 ```{r gdp-plot}
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
@@ -298,8 +271,8 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
     plot.margin = margin(20, 20, 20, 20)  # add margin around entire plot
   )
 ```
+:::
 
-**Interpretation**: The @tbl-gdp-rank and @fig-gdp-vs-rank show that as GDP and rank have a relatively strong, positive, linear relationship. This means that as GDP increases then so will rank. This means that countries that have higher GDP are more likely to have a higher rank and be more well off. If a country is struggling to create world wide markets, new goods, and build capital, than their government and people are going to struggle. This means the output of the country will be lower and thus rank will reflect this. You want your country to have a high GDP!
 
 ## 3. Corruption Perception vs Country Rank
 
@@ -330,6 +303,7 @@ knitr::kable(corruption_summary)
 
 \vspace{4mm}
 
+::: {.fragment}
 ```{r corruption-plot}
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
@@ -357,8 +331,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
     plot.margin = margin(20, 20, 20, 20)  
   )
 ```
-
-**Interpretation**: Overall, both the @tbl-corruption-rank and the @fig-corruption-vs-rank for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
+:::
 
 \newpage
 
@@ -432,9 +405,10 @@ This appendix contains all R code used in the analysis.
 ```{r ref.label='corruption-plot', echo=TRUE, eval=FALSE}
 ```
 
-
+```
 \newpage
 
 Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024]. Polling data come from Gallup [@gallup2024].
 
 # References {#sec-references}
+Gallup World Poll.World Happiness Report Data Figure 2.1: 2011–2024. Excel file, analysis conducted on2024 subset, 2024.Helliwell, John F., et al., editors.World Happiness Report 2025. University of Oxford: Wellbeing ResearchCentre, 2025.Sustainable Development Solutions Network.World Happiness Report 2024 - Time Series Data (2011-2024).Data set, 2024,https://www.worldhappiness.report/data-sharing/.12
