@@ -1,5 +1,5 @@
 ---
-title: "World Happiness Index: Exploring Key Determinants of National Happiness"
+title: "World Happiness Index: Exploring Key Factorss of National Happiness"
 author: "Nguyen Ngo, Jenny Tong, Ava Walters"
 date: "December 07 2025"
 format: 
@@ -131,7 +131,7 @@ happiness_sensitivity <- happiness_2024 %>%
 
 ```
 
-\vspace{8mm}
+\newpage
 
 # Summary Statistics {#sec-summary-stats}
 
@@ -360,6 +360,8 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 **Interpretation**: Overall, both the @tbl-corruption-rank and the @fig-corruption-vs-rank for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
 
+\newpage
+
 # Discussion and Conclusions {#sec-conclusions}
 
 ## Key Findings
@@ -394,6 +396,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
 
+\newpage
 # Code Appendix
 ```markdown
 
@@ -403,11 +406,9 @@ This appendix contains all R code used in the analysis.
 ```{r ref.label='world-happiness-index-wrangling', echo=TRUE, eval=FALSE}
 ```
 
-
 ## 2. SUMMARY STATISTICS
 ```{r ref.label='summary-stats-table', echo=TRUE, eval=FALSE}
 ```
-
 
 ## 3. VISUALIZATIONS 
 3.1 Life Evaluation vs Country Rank
