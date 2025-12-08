@@ -4,6 +4,7 @@ author: "Nguyen Ngo, Jenny Tong, Ava Walters"
 date: "December 07 2025"
 format: 
   pdf:
+    citation-style: mla
     documentclass: article
     # margin: 1 in all sides
     geometry:
@@ -24,6 +25,12 @@ execute:
   warning: false
   message: false
   error: false
+  
+# csl, bibliography, reference
+bibliography: references.bib
+csl: mla9.csl
+reference-location: section
+
 ---
 
 # Introduction {#sec-introduction}
@@ -386,6 +393,11 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
 
+\newpage
+Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024].
+Polling data come from Gallup [@gallup2024].
+
+# References {#sec-references}
 
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE, include=FALSE}
