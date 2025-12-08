@@ -389,15 +389,6 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
 
-\newpage
-
-Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024]. Polling data come from Gallup [@gallup2024].
-
-# References {#sec-references}
-
-
-
-
 # Code Appendix
 ```markdown
 
@@ -434,3 +425,10 @@ This appendix contains all R code used in the analysis.
 
 ```{r ref.label='corruption-plot', echo=TRUE, eval=FALSE}
 ```
+
+
+\newpage
+
+Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024]. Polling data come from Gallup [@gallup2024].
+
+# References {#sec-references}
