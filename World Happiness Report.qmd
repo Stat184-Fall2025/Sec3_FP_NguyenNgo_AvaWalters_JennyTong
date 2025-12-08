@@ -400,9 +400,11 @@ Data comes from the World Happiness Report [@helliwell2025] and the dataset is p
 
 This appendix contains all R code used in the analysis.
 
-## ==============================================
 ## 1. DATA WRANGLING AND PREPARATION
-## ==============================================
-
 ```{r ref.label='world-happiness-index-wrangling', echo=TRUE, eval=FALSE}
+```
+
+
+## 2. SUMMARY STATISTICS
+```{r ref.label='summary-stats-table', echo=TRUE, eval=FALSE}
 ```
