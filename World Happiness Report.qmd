@@ -137,7 +137,7 @@ happiness_sensitivity <- happiness_2024 %>%
 
 This dataset includes `r nrow(happiness_2024)` countries.
 
-```{r}
+```{r summary-stats-table}
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
@@ -178,7 +178,7 @@ knitr::kable(summary_table,
 
 \vspace{4mm}
 
-```{r}
+```{r life-eval-table}
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
@@ -211,7 +211,7 @@ knitr::kable(life_eval_summary)
 
 \vspace{4mm}
 
-```{r}
+```{r life-eval-plot}
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: Jenny Tong, Ava Walters
 
@@ -245,7 +245,7 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 
 \vspace{4mm}
 
-```{r}
+```{r gdp-table}
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
 
@@ -269,7 +269,7 @@ knitr::kable(gdp_summary)
 
 \vspace{4mm}
 
-```{r}
+```{r gdp-plot}
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
 
@@ -303,7 +303,7 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 
 \vspace{4mm}
 
-```{r}
+```{r corruption-table}
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
 
@@ -329,7 +329,7 @@ knitr::kable(corruption_summary)
 
 \vspace{4mm}
 
-```{r}
+```{r corruption-table}
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
 
