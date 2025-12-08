@@ -30,7 +30,6 @@ execute:
 bibliography: references.bib
 csl: mla9.csl
 reference-location: section
-
 ---
 
 # Introduction {#sec-introduction}
@@ -141,7 +140,7 @@ This dataset includes `r nrow(happiness_2024)` countries.
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
-# STEP 9: Create a Summary Table 
+# STEP 5: Create a Summary Table 
 summary_table <- data.frame(
   `Dataset Overview` = c(
     "Total countries analyzed",
@@ -165,7 +164,7 @@ summary_table <- data.frame(
   )
 )
 
-# STEP 10: Display
+# STEP 6: Display
 knitr::kable(summary_table, 
              col.names = c("Dataset Overview", "Value"),
              align = c("l", "l"),
@@ -182,7 +181,6 @@ knitr::kable(summary_table,
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
-#| tbl-life-evaluation
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
 # Create rank groups first
@@ -215,7 +213,6 @@ knitr::kable(life_eval_summary)
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: Jenny Tong, Ava Walters
 
-#| fig-life-eval-vs-rank
 #| fig-cap: "Life Evaluation vs Country Rank"
 #| fig-alt: "Scatter plot showing life evaluation scores on x-axis and country ranks on y-axis. Points are color-coded by rank groups."
 
@@ -250,7 +247,6 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 # REVIEWER: Nguyen Ngo
 
 #| tbl-cap: "GDP Contribution Statistics by Rank Group"
-#| label: tbl-gdp-rank
 
 # Create GDP summary table
 gdp_summary <- happiness_2024 %>% 
@@ -273,7 +269,6 @@ knitr::kable(gdp_summary)
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
 
-#| label: fig-gdp-vs-rank
 #| fig-cap: "GDP Contribution vs Country Rank"
 #| fig-alt: "Scatter plot showing GDP contribution scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
 
@@ -308,7 +303,6 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 # REVIEWER: Nguyen Ngo
 
 #| tbl-cap: "Corruption Perception Statistics by Rank Group"
-#| label: tbl-corruption-rank
 
 library(dplyr)
 
@@ -329,11 +323,10 @@ knitr::kable(corruption_summary)
 
 \vspace{4mm}
 
-```{r corruption-table}
+```{r corruption-plot}
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
 
-#| label: fig-corruption-vs-rank
 #| fig-cap: "Corruption Perception vs Country Rank"
 #| fig-alt: "Scatter plot showing corruption perception scores on x axis and country ranks on y axis. Points are color coded by rank groups."
 
@@ -394,11 +387,22 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
 
 \newpage
-Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024].
-Polling data come from Gallup [@gallup2024].
+
+Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024]. Polling data come from Gallup [@gallup2024].
 
 # References {#sec-references}
 
 
-```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE, include=FALSE}
+
+
+# Code Appendix
+```markdown
+
+This appendix contains all R code used in the analysis.
+
+## ==============================================
+## 1. DATA WRANGLING AND PREPARATION
+## ==============================================
+
+```{r ref.label='world-happiness-index-wrangling', echo=TRUE, eval=FALSE}
 ```
