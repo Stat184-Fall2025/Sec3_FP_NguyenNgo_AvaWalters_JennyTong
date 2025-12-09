@@ -179,11 +179,11 @@ knitr::kable(summary_table,
 \vspace{4mm}
 
 ```{r life-eval-table}
-# PRIMARY AUTHOR: Nguyen Ngo
-# REVIEWER: All
-
 #| label: tbl-life-eval
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
+
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: All
 
 # Create rank groups first
 happiness_2024 <- happiness_2024 %>% 
@@ -212,13 +212,13 @@ knitr::kable(life_eval_summary)
 \vspace{4mm}
 
 ```{r life-eval-plot}
+#| label: fig-life-plot
+#| fig-cap: "Life Evaluation vs Country Rank"
+#| fig-alt: "Scatter plot showing life evaluation scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
+
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: Jenny Tong, Ava Walters
 
-#| label: fig-life-plot
-#| fig-cap: "Life Evaluation vs Country Rank"
-#| fig-alt: "Scatter plot showing life evaluation scores on x axis and 
-#| country ranks on y axis. Points are color-coded by rank groups."
 
 ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
   geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
@@ -242,7 +242,7 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 
 See the table (@tbl-life-eval) and figure (@fig-life-plot).
 
-**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the Top 20% have the highest life evaluation (around 6.90). Those in the Bottom 20% score much lower with a score of approximately 3.80. This pattern is consistent across all rank groups as shown in @tbl-life-eval. The scatter plot @fig-life-plot displays a fitted line that matches the table shown. The upward-sloping line shows that life evaluation is a strong predictor of a country's happiness rank.
+**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the Top 20% have the highest life evaluation (around 6.90). Those in the Bottom 20% score much lower with a score of approximately 3.80. This pattern is consistent across all rank groups as shown in @tbl-life-eval. @fig-life-plot displays a fitted line that matches the table shown. The upward-sloping line shows that life evaluation is a strong predictor of a country's happiness rank.
 
 ## 2. GDP Contribution vs Country Rank
 
