@@ -412,7 +412,7 @@ This appendix contains all R code used in the analysis.
 ```{r ref.label='life-eval-table', echo=TRUE, eval=FALSE}
 ```
 
-```{r ref.label='life-eval-plot', echo=TRUE, eval=TRUE}
+```{r ref.label='life-eval-plot', echo=TRUE, eval=FALSE}
 ```
 
 3.2 GDP Contribution vs Country Rank
