@@ -114,8 +114,7 @@ happiness_sensitivity <- happiness_2024 %>%
 
 This dataset includes `r nrow(happiness_2024)` countries.
 
-```{r}
-#| label: summary-stats-table
+```{r summary-stats-table}
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
@@ -153,7 +152,6 @@ knitr::kable(summary_table,
 # Visualization {#sec-visualization}
 
 ## 1. Life Evaluation vs Country Rank
-:::{fragment}
 ```{r}
 #| label: tbl-life-eval
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
@@ -184,7 +182,6 @@ life_eval_summary <- happiness_2024 %>%
 
 knitr::kable(life_eval_summary)
 ```
-:::
 
 :::{fragment}
 ```{r}
