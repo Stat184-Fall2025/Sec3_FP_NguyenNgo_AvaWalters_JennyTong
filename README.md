@@ -21,7 +21,7 @@ We plan to wrangle the data to show all variables in separate columns for only t
 
 ## Repo Structure
 
-In our repo, you will be able to find the original World Happiness Report data, our new wrangled data within the QMD file, plan document, and our final write up documents all on the home page (QMD and PDF file). To view any of these documents, simply click on the document name or title and you will be redirected. All information necessary to get a full picture of this statistical analysis should be at your disposal here.   
+In our repo, you will be able to find the original World Happiness Report data, our new wrangled data within the QMD file, plan document, presentation format slides, and our final write up documents all on the home page (QMD and PDF file). To view any of these documents, simply click on the document name or title and you will be redirected. All infomration necessary to get a full picture of this statistical analysis should be at your disposal here.   
 
 ## Authors
 
