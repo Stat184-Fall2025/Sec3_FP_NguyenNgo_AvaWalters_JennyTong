@@ -152,6 +152,7 @@ knitr::kable(summary_table,
 # Visualization {#sec-visualization}
 
 ## 1. Life Evaluation vs Country Rank
+
 ```{r}
 #| label: tbl-life-eval
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
@@ -183,7 +184,7 @@ life_eval_summary <- happiness_2024 %>%
 knitr::kable(life_eval_summary)
 ```
 
-:::{fragment}
+::: {fragment}
 ```{r}
 #| label: fig-life-plot
 #| fig-cap: "Life Evaluation vs Country Rank"
@@ -241,7 +242,8 @@ knitr::kable(gdp_summary)
 ```
 
 \vspace{4mm}
-:::{fragment}
+
+::: {fragment}
 ```{r}
 #| label: fig-gdp-vs-rank
 #| fig-cap: "GDP Contribution vs Country Rank"
@@ -298,7 +300,8 @@ knitr::kable(corruption_summary)
 ```
 
 \vspace{4mm}
-:::{fragment}
+
+::: {fragment}
 ```{r}
 #| label: fig-corruption-vs-rank
 #| fig-cap: "Corruption Perception vs Country Rank"
@@ -364,43 +367,57 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
 
 \newpage
+
 # Code Appendix
 
 This appendix contains all R code used in the analysis.
 
 ## 1. DATA WRANGLING AND PREPARATION
+
 ```{r ref.label='world-happiness-index-wrangling', echo=TRUE, eval=FALSE}
 ```
 
 ## 2. SUMMARY STATISTICS
+
 ```{r ref.label='summary-stats-table', echo=TRUE, eval=FALSE}
 ```
 
-## 3. VISUALIZATIONS 
+## 3. VISUALIZATIONS
+
 ### 3.1 Life Evaluation vs Country Rank
+
 ```{r ref.label='tbl-life-eval', echo=TRUE, eval=FALSE}
 ```
 
 ```{r ref.label='fig-life-plot', echo=TRUE, eval=FALSE}
 ```
 
+::: {fragment}
 ### 3.2 GDP Contribution vs Country Rank
+
 ```{r ref.label='tbl-gdp-rank', echo=TRUE, eval=FALSE}
 ```
 
 ```{r ref.label='fig-gdp-vs-rank', echo=TRUE, eval=FALSE}
 ```
+:::
 
+::: {fragment}
 ### 3.3 Corruption Perception vs Country Rank
+
 ```{r ref.label='tbl-corruption-rank', echo=TRUE, eval=FALSE}
 ```
 
 ```{r ref.label='fig-corruption-vs-rank', echo=TRUE, eval=FALSE}
 ```
-
+:::
 
 \newpage
 
 Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024]. Polling data come from Gallup [@gallup2024].
 
 # References {#sec-references}
+
+*Gallup World Poll.World Happiness Report Data Figure 2.1: 2011–2024. Excel file, analysis conducted on2024 subset, 2024.Helliwell, John F., et al., editors.World Happiness Report 2025.*
+
+*University of Oxford: Wellbeing ResearchCentre, 2025.Sustainable Development Solutions Network.World Happiness Report 2024 - Time Series Data (2011-2024).Data set, 2024,https://www.worldhappiness.report/data-sharing/.12*
