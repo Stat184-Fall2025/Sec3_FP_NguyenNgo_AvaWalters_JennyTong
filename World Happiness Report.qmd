@@ -337,6 +337,8 @@ knitr::kable(corruption_summary)
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
 
+library(ggplot2)
+
 ggplot(happiness_2024, aes(x = corruption, y = rank)) +
   geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
   geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1) +
@@ -357,7 +359,7 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
   )
 ```
 
-**Interpretation**: Overall, both the @tbl-corruption-rank and the @fig-corruption-vs-rank for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. This is scaled almost inversely because a score of 0 corresponds to high corruption where as a score of 1 corresponds to a belief of low corruption. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score (high belief of corruption), although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher rank are more likely to have a higher corruption perception score (low belief in corruption aka clean).
+**Interpretation**: Overall, both the @tbl-corruption-rank and the @fig-corruption-vs-rank for corruption perception vs country rank in the world happiness report indicates a positive relationship: the higher score of corruption perception will correlate to a higher rank in the world happiness report. For the corruption perception score, it is determined by whether the people of said country to say their government's public sector is corrupt, whwre 0 corresponds to high corruption and a score of 1 corresponds to a belief of low corruption. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score (high belief of corruption), although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher rank are more likely to have a higher corruption perception score, a low belief in corruption.
 
 \newpage
 
