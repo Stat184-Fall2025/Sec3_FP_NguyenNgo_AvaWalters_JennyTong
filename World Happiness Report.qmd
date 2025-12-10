@@ -61,7 +61,7 @@ The data for this analysis originates from the World Happiness Report 2024 datas
 
 ## CARE Principles
 
--   **Collective Benefit**: The data helps with the understanding of well-being for policy implementation.
+-   **Collective Benefit**: The data helps with the understanding of wel being for future policy implementation.
 
 -   **Authority to Control**: The original data collected by Gallup World Poll, an ongoing global survey that tracks worldwide ongoing issues.
 
@@ -135,7 +135,7 @@ happiness_sensitivity <- happiness_2024 %>%
 
 # Summary Statistics {#sec-summary-stats}
 
-This dataset includes `r nrow(happiness_2024)` countries.
+This dataset includes `r nrow(happiness_2024)` countries. This is a survey which takes into account for which countries decided to participate. This dataset doesn't capture 195 recognized nations by the UN.
 
 ```{r summary-stats-table}
 # PRIMARY AUTHOR: Nguyen Ngo
@@ -240,7 +240,9 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
   )
 ```
 
-**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the Top 20% have the highest life evaluation (around 6.90). Those in the Bottom 20% score much lower with a score of approximately 3.80. This pattern is consistent across all rank groups as shown in @tbl-life-eval. @fig-life-plot displays a fitted line that matches the table shown. The upward-sloping line shows that life evaluation is a strong predictor of a country's happiness rank.
+**Explanation:** Using existing official rankings assigned to countries provided in the Excel sheet, rank groups are divided into five equal quantile groups with each representing 20% of the countries who reported their data.
+
+**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the **Top 20%** have the highest life evaluation (around 7.00). Those in the **Bottom 20%** score much lower with a score of approximately 3.80. The large spread of data as shown in the Minimum-Maximum and Standard Deviation within the Bottom 20% rank group can be explained by how all types of struggling countries are mixed in this category. Moderately unhappy nations with scores in the 3-4 range indicate moderate hardship and severely distressed nations which score below 2 indicate conflict/state collapse. This pattern is consistent across all rank groups as shown in @tbl-life-eval. The visualization in @fig-life-plot displays a fitted line that matches the summary table shown. The data cluster tightly with a single notable outlier (as described above). The upward-slope trend line indicates a strong positive correlation: higher life evaluation scores strongly predict better happiness rankings.
 
 ## 2. GDP Contribution vs Country Rank
 
@@ -383,15 +385,15 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 -   **Cultural Comparisons:** Examine how different culture groups may highlight the differences in how happiness is influenced.
 
--   **Additional Key Metrics**: Other factors such as education access, healthcare access, political stability, etc. may influence happiness.
+-   **Additional Key Metrics**: Other factors such as education access, healthcare access, political stability, etc. may influence happiness as well.
 
 # Author Contributions {#sec-author-contributions}
 
-1.  Nguyen Ngo: Managed the GitHub repository, formatted and structured the report, led the data wrangling process, and rendered the full Quarto document. Created the summary statistics section and conducted the life evaluation analysis and intepretation. Handled technical coding and ensured the accuracy of the analytical components.
+1.  Nguyen Ngo: Managed the GitHub repository, formatted and structured the report, led the data wrangling process, ensured consistency across data and rendered the full Quarto document. Created the summary statistics section and conducted the life evaluation analysis and interpretation. Handled technical coding and ensured the accuracy of all components.
 
-2.  Jenny Tong: Imported the dataset and did a quality check to identify errors and inconsistencies. Ensured that the project fully met the assignment guidelines and contributed to the analysis and interpretation of the corruption perception section.
+2.  Jenny Tong: Imported the dataset, did quality check to identify errors and inconsistencies. Ensured that the project fully met the assignment guidelines and contributed to the analysis and interpretation of the corruption perception section.
 
-3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
+3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Highlighted key aspects of data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
 
 \newpage
 
