@@ -114,7 +114,8 @@ happiness_sensitivity <- happiness_2024 %>%
 
 This dataset includes `r nrow(happiness_2024)` countries.
 
-```{r summary-stats-table}
+```{r}
+#| label: summary-stats-table
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
 
@@ -152,15 +153,13 @@ knitr::kable(summary_table,
 # Visualization {#sec-visualization}
 
 ## 1. Life Evaluation vs Country Rank
+:::{fragment}
+```{r}
+#| label: tbl-life-eval
+#| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
-\vspace{4mm}
-
-```{r life-eval-table}
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: All
-
-#| label:tbl-life-eval
-#| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
 # Create rank groups first
 happiness_2024 <- happiness_2024 %>% 
@@ -185,17 +184,17 @@ life_eval_summary <- happiness_2024 %>%
 
 knitr::kable(life_eval_summary)
 ```
+:::
 
-\vspace{4mm}
-::: {.fragment}
-```{r life-eval-plot}
+:::{fragment}
+```{r}
+#| label: fig-life-plot
+#| fig-cap: "Life Evaluation vs Country Rank"
+#| fig-alt: "Scatter plot showing life evaluation scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
+
 # PRIMARY AUTHOR: Nguyen Ngo
 # REVIEWER: Jenny Tong, Ava Walters
 
-#| label:fig-life-plot
-#| fig-cap: "Life Evaluation vs Country Rank"
-#| fig-alt: "Scatter plot showing life evaluation scores on x axis and 
-#| country ranks on y axis. Points are color-coded by rank groups."
 
 ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
   geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
@@ -218,13 +217,16 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 ```
 :::
 
-\vspace{4mm}
 ## 2. GDP Contribution vs Country Rank
-```{r gdp-table}
+
+\vspace{4mm}
+
+```{r}
+#| label: tbl-gdp-rank
+#| tbl-cap: "GDP Contribution Statistics by Rank Group"
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
 
-#| tbl-cap: "GDP Contribution Statistics by Rank Group"
 
 # Create GDP summary table
 gdp_summary <- happiness_2024 %>% 
@@ -242,15 +244,13 @@ knitr::kable(gdp_summary)
 ```
 
 \vspace{4mm}
-
-::: {.fragment}
-```{r gdp-plot}
+:::{fragment}
+```{r}
+#| label: fig-gdp-vs-rank
+#| fig-cap: "GDP Contribution vs Country Rank"
+#| fig-alt: "Scatter plot showing GDP contribution scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
 # PRIMARY AUTHOR: Ava Walters
 # REVIEWER: Nguyen Ngo
-
-#| fig-cap: "GDP Contribution vs Country Rank"
-#| fig-alt: "Scatter plot showing GDP contribution scores on x axis and 
-#| country ranks on y axis. Points are color-coded by rank groups."
 
 ggplot(happiness_2024, aes(x = gdp, y = rank)) +
   geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
@@ -273,16 +273,15 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 ```
 :::
 
-
 ## 3. Corruption Perception vs Country Rank
 
 \vspace{4mm}
 
-```{r corruption-table}
+```{r}
+#| label: tbl-corruption-rank
+#| tbl-cap: "Corruption Perception Statistics by Rank Group"
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
-
-#| tbl-cap: "Corruption Perception Statistics by Rank Group"
 
 library(dplyr)
 
@@ -302,15 +301,13 @@ knitr::kable(corruption_summary)
 ```
 
 \vspace{4mm}
-
-::: {.fragment}
-```{r corruption-plot}
+:::{fragment}
+```{r}
+#| label: fig-corruption-vs-rank
+#| fig-cap: "Corruption Perception vs Country Rank"
+#| fig-alt: "Scatter plot showing corruption perception scores on x axis and country ranks on y axis. Points are color coded by rank groups."
 # PRIMARY AUTHOR: Jenny Tong
 # REVIEWER: Nguyen Ngo
-
-#| fig-cap: "Corruption Perception vs Country Rank"
-#| fig-alt: "Scatter plot showing corruption perception scores on x axis 
-#| and country ranks on y axis. Points are color coded by rank groups."
 
 ggplot(happiness_2024, aes(x = corruption, y = rank)) +
   geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
@@ -371,7 +368,6 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 \newpage
 # Code Appendix
-```markdown
 
 This appendix contains all R code used in the analysis.
 
@@ -384,31 +380,30 @@ This appendix contains all R code used in the analysis.
 ```
 
 ## 3. VISUALIZATIONS 
-3.1 Life Evaluation vs Country Rank
-```{r ref.label='life-eval-table', echo=TRUE, eval=FALSE}
+### 3.1 Life Evaluation vs Country Rank
+```{r ref.label='tbl-life-eval', echo=TRUE, eval=FALSE}
 ```
 
-```{r ref.label='life-eval-plot', echo=TRUE, eval=FALSE}
+```{r ref.label='fig-life-plot', echo=TRUE, eval=FALSE}
 ```
 
-3.2 GDP Contribution vs Country Rank
-```{r ref.label='gdp-table', echo=TRUE, eval=FALSE}
+### 3.2 GDP Contribution vs Country Rank
+```{r ref.label='tbl-gdp-rank', echo=TRUE, eval=FALSE}
 ```
 
-```{r ref.label='gdp-plot', echo=TRUE, eval=FALSE}
+```{r ref.label='fig-gdp-vs-rank', echo=TRUE, eval=FALSE}
 ```
 
-3.3 Corruption Perception vs Country Rank
-```{r ref.label='corruption-table', echo=TRUE, eval=FALSE}
+### 3.3 Corruption Perception vs Country Rank
+```{r ref.label='tbl-corruption-rank', echo=TRUE, eval=FALSE}
 ```
 
-```{r ref.label='corruption-plot', echo=TRUE, eval=FALSE}
+```{r ref.label='fig-corruption-vs-rank', echo=TRUE, eval=FALSE}
 ```
 
-```
+
 \newpage
 
 Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024]. Polling data come from Gallup [@gallup2024].
 
 # References {#sec-references}
-Gallup World Poll.World Happiness Report Data Figure 2.1: 2011–2024. Excel file, analysis conducted on2024 subset, 2024.Helliwell, John F., et al., editors.World Happiness Report 2025. University of Oxford: Wellbeing ResearchCentre, 2025.Sustainable Development Solutions Network.World Happiness Report 2024 - Time Series Data (2011-2024).Data set, 2024,https://www.worldhappiness.report/data-sharing/.12

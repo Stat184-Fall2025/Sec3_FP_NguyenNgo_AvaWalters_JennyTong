@@ -178,7 +178,7 @@ knitr::kable(summary_table,
 
 \vspace{4mm}
 
-```{r life-eval-table}
+```{r}
 #| label: tbl-life-eval
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
 
@@ -211,7 +211,7 @@ knitr::kable(life_eval_summary)
 
 \vspace{4mm}
 
-```{r life-eval-plot}
+```{r}
 #| label: fig-life-plot
 #| fig-cap: "Life Evaluation vs Country Rank"
 #| fig-alt: "Scatter plot showing life evaluation scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
@@ -246,7 +246,7 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
 
 \vspace{4mm}
 
-```{r gdp-table}
+```{r}
 #| label: tbl-gdp-rank
 #| tbl-cap: "GDP Contribution Statistics by Rank Group"
 # PRIMARY AUTHOR: Ava Walters
@@ -270,7 +270,7 @@ knitr::kable(gdp_summary)
 
 \vspace{4mm}
 
-```{r gdp-plot}
+```{r}
 #| label: fig-gdp-vs-rank
 #| fig-cap: "GDP Contribution vs Country Rank"
 #| fig-alt: "Scatter plot showing GDP contribution scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
@@ -303,7 +303,7 @@ ggplot(happiness_2024, aes(x = gdp, y = rank)) +
 
 \vspace{4mm}
 
-```{r corruption-table}
+```{r}
 #| label: tbl-corruption-rank
 #| tbl-cap: "Corruption Perception Statistics by Rank Group"
 # PRIMARY AUTHOR: Jenny Tong
@@ -328,7 +328,7 @@ knitr::kable(corruption_summary)
 
 \vspace{4mm}
 
-```{r corruption-plot}
+```{r}
 #| label: fig-corruption-vs-rank
 #| fig-cap: "Corruption Perception vs Country Rank"
 #| fig-alt: "Scatter plot showing corruption perception scores on x axis and country ranks on y axis. Points are color coded by rank groups."
@@ -395,7 +395,6 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
 
 \newpage
 # Code Appendix
-```markdown
 
 This appendix contains all R code used in the analysis.
 
@@ -408,25 +407,25 @@ This appendix contains all R code used in the analysis.
 ```
 
 ## 3. VISUALIZATIONS 
-3.1 Life Evaluation vs Country Rank
-```{r ref.label='life-eval-table', echo=TRUE, eval=FALSE}
+### 3.1 Life Evaluation vs Country Rank
+```{r ref.label='tbl-life-eval', echo=TRUE, eval=FALSE}
 ```
 
-```{r ref.label='life-eval-plot', echo=TRUE, eval=FALSE}
+```{r ref.label='fig-life-plot', echo=TRUE, eval=FALSE}
 ```
 
-3.2 GDP Contribution vs Country Rank
-```{r ref.label='gdp-table', echo=TRUE, eval=FALSE}
+### 3.2 GDP Contribution vs Country Rank
+```{r ref.label='tbl-gdp-rank', echo=TRUE, eval=FALSE}
 ```
 
-```{r ref.label='gdp-plot', echo=TRUE, eval=FALSE}
+```{r ref.label='fig-gdp-vs-rank', echo=TRUE, eval=FALSE}
 ```
 
-3.3 Corruption Perception vs Country Rank
-```{r ref.label='corruption-table', echo=TRUE, eval=FALSE}
+### 3.3 Corruption Perception vs Country Rank
+```{r ref.label='tbl-corruption-rank', echo=TRUE, eval=FALSE}
 ```
 
-```{r ref.label='corruption-plot', echo=TRUE, eval=FALSE}
+```{r ref.label='fig-corruption-vs-rank', echo=TRUE, eval=FALSE}
 ```
 
 
