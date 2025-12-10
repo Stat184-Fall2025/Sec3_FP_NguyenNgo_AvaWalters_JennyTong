@@ -13,15 +13,15 @@ https://www.reddit.com/r/dataisbeautiful/comments/1hb4h5i/oc_country_happiness_v
 
 ## Data Sources and Acknowledgements
 
-We are using the publicly available World Happiness Report 2025 dataset on World Happiness Report. The link is: https://www.worldhappiness.report/data-sharing/
+We are using the publicly available World Happiness Report dataset (2011-2024) on World Happiness Report. The link is: https://www.worldhappiness.report/data-sharing/
 
 ## Current Plan
 
-We plan to wrangle the data to show all variables in separate columns for only the year of 2024. This also means that every country will have their own row and will be easier to analyze. We also plan to create tables and accompanying graphs that exhibit the relationship between life evaluation, corruption, and GDP with rank (all separately). We expect to be able to note the correlation between these variables, which countries are better off, and also how sensitive the rank system is. This means that we will be able to observe how much a country can rise or fall due to only a tenth or hundredth change in life evaluation, corruption, or GDP. All information will be in separate documents and then compiled into a formal pdf where all findings can be observed in a clean and systematic way (this should optimize knowledge intake from the data findings)
+We plan to wrangle the data to show all variables in separate columns for only the year of 2024. This also means that every country will have their own row and will be easier to analyze. We also plan to create tables and accompanying graphs that exhibit the relationship between life evaluation, corruption, and GDP with rank (all separately). Above that, a summary statistics table will be provided to provide the overall details of what we are analyzing. We expect to be able to note the correlation between these variables, which countries are better off, and also how sensitive the rank system is. This means that we will be able to observe how much a country can rise or fall due to only a tenth or hundredth change in life evaluation, corruption, or GDP. All information will be in separate documents and then compiled into a formal pdf where all findings can be observed in a clean and systematic way (this should optimize knowledge intake from the data findings)
 
 ## Repo Structure
 
-In our repo, you will be able to find the original World Happiness Report data, our new wrangled data within the QMD file, plan document, and our final write up documents all on the home page (QMD and PDF file). To view any of these documents, simply click on the document name or title and you will be redirected. All infomration necessary to get a full picture of this statistical analysis should be at your disposal here.   
+In our repo, you will be able to find the original World Happiness Report data, our new wrangled data within the QMD file, plan document, presentation format slides, and our final write up documents all on the home page (QMD and PDF file). To view any of these documents, simply click on the document name or title and you will be redirected. All infomration necessary to get a full picture of this statistical analysis should be at your disposal here.   
 
 ## Authors
 

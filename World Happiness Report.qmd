@@ -1,9 +1,11 @@
 ---
-title: "World Happiness Index"
+title: "World Happiness Index: Exploring Key Factorss of National Happiness"
 author: "Nguyen Ngo, Jenny Tong, Ava Walters"
-date: "12/02/2025"
+date: "December 07 2025"
 format: 
   pdf:
+    
+    citation-style: mla
     documentclass: article
     # margin: 1 in all sides
     geometry:
@@ -16,37 +18,64 @@ format:
     fig-pos: "H"
     tbl-cap-location: top
     fig-cap-location: top
- 
+
+
 # prevent warnings and messages
 execute:
   echo: false
   warning: false
   message: false
   error: false
+  
+# csl, bibliography, reference
+bibliography: references.bib
+csl: mla9.csl
+reference-location: section
 ---
 
-# Introduction
+# Introduction {#sec-introduction}
 
-This report contains statistical analysis on ...
+This report analyzes and examines the 2024 World Happiness Report data to understand how key factors, specifically life evaluation, economic prosperity (GDP) and governance (corruption perception), influence a country's happiness rankings. Our research questions are:
 
-1.  **Life Evaluation vs Rank:** Citizens' life satisfaction correlation with their country's happiness ranking.
-2.  **Economic Influence:** The relationship between GDP per capita and happiness index.
-3.  **Governance Impact:** Corruption perception effect happiness rankings.
+1.  **Life Evaluation vs Rank:** How does the citizens' overall life satisfaction correlate with their country's happiness ranking?
+2.  **Economic Influence:** What is the relationship between GDP per capita and national happiness ranking?
+3.  **Governance Impact:** How does corruption perception affect happiness ranking?
 
 This analysis employs Exploratory Data Analysis techniques to find different relationships in data and provide insights into what contribute to a nation's happiness index.
 
-# Data Provenance and Ethical Considerations (??) {#sec-armed}
+# Data Provenance and Ethical Considerations {#sec-data-ethics}
 
-## FAIR (?)
+## Data Source and Selection
 
-## CARE (?)
+The data for this analysis originates from the World Happiness Report 2024 dataset, which contains annual data from 2011 through 2024. For this study, we specifically extracted and analyzed the 2024 data subset only to examine the patterns in national happiness determinants. The complete dataset is publicly available as an Excel file titled "World Happiness Report Data Figure 2.1.xlsx" containing the "Data for Figure 2.1 (2011–2024)" sheet.
 
-## Data Preparation
+## FAIR Principles
+
+-   **Find-able:** The data is publicly available through the World Happiness Report website.
+
+-   **Accessible**: Data is available in a Excel with clear documentation.
+
+-   **Inter-operable**: Uses standard variables and scales that are compatible with a social science research
+
+-   **Reusable**: Comes with a detailed methodology (a planning document) report
+
+## CARE Principles
+
+-   **Collective Benefit**: The data helps with the understanding of wel being for future policy implementation.
+
+-   **Authority to Control**: The original data collected by Gallup World Poll, an ongoing global survey that tracks worldwide ongoing issues.
+
+-   **Responsibility**: Published with transparency that includes a methodology and limitations.
+
+-   **Ethics**: Using ethical research standards to uphold privacy protection.
 
 \vspace{8mm}
 
 ```{r world-happiness-index-wrangling, include=FALSE}
  # Wrangling Code that will not be shown when rendered
+# CODE STYLEL GUIDE: Tidyverse Style Guide
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: Jenny Tong
 
 # STEP 1: Load required pacakges
 library(tidyverse)
@@ -100,58 +129,61 @@ happiness_sensitivity <- happiness_2024 %>%
   ) %>% 
   filter(!is.na(sensitivity))
 
-# STEP 5: Compute Correlation of Factors w/ Rank
-factor_correlations <- happiness_2024 %>%
-select(rank, life_evaluation, gdp, corruption, social_support,
-health_life_expectancy, freedom, generosity) %>% 
-cor(use = "complete.obs") %>% # compute correlation matrix
-as.data.frame() %>%
-rownames_to_column("factor") %>% # convert rownames to a column
-select(factor, correlation_with_rank = rank)
+```
 
-# STEP 6: Top 10 Happiest Countries Table
-top_10 <- happiness_2024 %>% 
-  # select 10 smallest ranks
-  slice_min(rank, n = 10) %>% 
-  select(country, rank, life_evaluation, gdp, corruption)
+\newpage
 
-# STEP 7: Create Bottom 10 Least Happiest Countries Table
-bottom_10 <- happiness_2024 %>% 
-  # select 10 largest ranks
-  slice_max(rank, n = 10) %>% 
-  select(country, rank, life_evaluation, gdp, corruption)
+# Summary Statistics {#sec-summary-stats}
 
-# STEP 8: A Summary Statistics Table, if needed
-summary_stats <- happiness_2024 %>% 
-  summarize(
-    # count countries
-    n_countries = n(),
-    avg_life_eval = mean(life_evaluation, na.rm = TRUE),
-    avg_gdp = mean(gdp, na.rm = TRUE),
-    avg_corruption = mean(corruption, na.rm = TRUE),
-    life_eval_range = max(life_evaluation) - min(life_evaluation),
-    rank_range = max(rank) - min(rank)
+This dataset includes `r nrow(happiness_2024)` countries. This is a survey which takes into account for which countries decided to participate. This dataset doesn't capture 195 recognized nations by the UN.
+
+```{r summary-stats-table}
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: All
+
+# STEP 5: Create a Summary Table 
+summary_table <- data.frame(
+  `Dataset Overview` = c(
+    "Total countries analyzed",
+    "Life evaluation score range",
+    "Average life evaluation score",
+    "Average GDP contribution",
+    "Average corruption perception"
+  ),
+  Value = c(
+    # total countries
+    as.character(nrow(happiness_2024)),
+    # life evaluation range
+    paste(round(min(happiness_2024$life_evaluation), 2), "to", 
+          round(max(happiness_2024$life_evaluation), 2)),
+    # average life evaluation
+    paste(round(mean(happiness_2024$life_evaluation), 2)),
+    # average GDP contribution
+    paste(round(mean(happiness_2024$gdp, na.rm = TRUE), 2)),
+    # average corruption (higher = less corruption perceived)
+    paste(round(mean(happiness_2024$corruption, na.rm = TRUE), 2))
   )
+)
+
+# STEP 6: Display
+knitr::kable(summary_table, 
+             col.names = c("Dataset Overview", "Value"),
+             align = c("l", "l"),
+             caption = "Summary Statistics: World Happiness Report 2024 Dataset")
 ```
 
-Explanation
-
-```{}
-```
-
-\vspace{8mm}
-
-## Summary Statistics (? maybe to display what we have first then go into tables and figures)
-
-# Visualization
+# Visualization {#sec-visualization}
 
 ## 1. Life Evaluation vs Country Rank
 
 \vspace{4mm}
 
 ```{r}
-
+#| label: tbl-life-eval
 #| tbl-cap: "Life Evaluation Statistics by Rank Group"
+
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: All
 
 # Create rank groups first
 happiness_2024 <- happiness_2024 %>% 
@@ -180,9 +212,13 @@ knitr::kable(life_eval_summary)
 \vspace{4mm}
 
 ```{r}
-#| label: fig-life-eval-vs-rank
+#| label: fig-life-plot
 #| fig-cap: "Life Evaluation vs Country Rank"
-#| fig-alt: "Scatter plot showing life evaluation scores on x-axis and country ranks on y-axis. Points are color-coded by rank groups."
+#| fig-alt: "Scatter plot showing life evaluation scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
+
+# PRIMARY AUTHOR: Nguyen Ngo
+# REVIEWER: Jenny Tong, Ava Walters
+
 
 ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
   geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
@@ -204,40 +240,78 @@ ggplot(happiness_2024, aes(x = life_evaluation, y = rank)) +
   )
 ```
 
-**Interpretation**:
+**Explanation:** Using existing official rankings assigned to countries provided in the Excel sheet, rank groups are divided into five equal quantile groups with each representing 20% of the countries who reported their data.
+
+**Interpretation**: This analysis shows a strong positive relationship between a country's average life evaluation score and its overall happiness ranking. Countries in the **Top 20%** have the highest life evaluation (around 7.00). Those in the **Bottom 20%** score much lower with a score of approximately 3.80. The large spread of data as shown in the Minimum-Maximum and Standard Deviation within the Bottom 20% rank group can be explained by how all types of struggling countries are mixed in this category. Moderately unhappy nations with scores in the 3-4 range indicate moderate hardship and severely distressed nations which score below 2 indicate conflict/state collapse. This pattern is consistent across all rank groups as shown in @tbl-life-eval. The visualization in @fig-life-plot displays a fitted line that matches the summary table shown. The data cluster tightly with a single notable outlier (as described above). The upward-slope trend line indicates a strong positive correlation: higher life evaluation scores strongly predict better happiness rankings.
 
 ## 2. GDP Contribution vs Country Rank
 
 \vspace{4mm}
 
 ```{r}
+#| label: tbl-gdp-rank
+#| tbl-cap: "GDP Contribution Statistics by Rank Group"
+# PRIMARY AUTHOR: Ava Walters
+# REVIEWER: Nguyen Ngo
 
+
+# Create GDP summary table
+gdp_summary <- happiness_2024 %>% 
+  group_by(`Rank Group` = rank_group) %>% 
+  summarize(
+    `Number of Countries` = n(),
+    `Avg. GDP Contribution` = round(mean(gdp, na.rm = TRUE), 2),
+    `Min` = round(min(gdp, na.rm = TRUE), 2),
+    `Max` = round(max(gdp, na.rm = TRUE), 2),
+    `STDEV` = round(sd(gdp, na.rm = TRUE), 2)
+  ) %>% 
+  arrange(`Rank Group`)
+
+knitr::kable(gdp_summary)
 ```
 
 \vspace{4mm}
 
 ```{r}
+#| label: fig-gdp-vs-rank
+#| fig-cap: "GDP Contribution vs Country Rank"
+#| fig-alt: "Scatter plot showing GDP contribution scores on x axis and country ranks on y axis. Points are color-coded by rank groups."
+# PRIMARY AUTHOR: Ava Walters
+# REVIEWER: Nguyen Ngo
 
+ggplot(happiness_2024, aes(x = gdp, y = rank)) +
+  geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkblue", linewidth = 1) +
+  scale_y_reverse() +
+  scale_color_brewer(palette = "Set1", name = "Rank Group") +
+  labs(
+    title = "GDP Contribution vs Country Rank (2024)",
+    x = "GDP Contribution Score (Log GDP per capita)",
+    y = "Rank (1 = Happiest)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, margin = margin(b = 15)),
+    axis.title.x = element_text(margin = margin(t = 10)),  # move x-axis label down
+    axis.title.y = element_text(margin = margin(r = 10)),  # move y-axis label right
+    legend.position = "right",
+    plot.margin = margin(20, 20, 20, 20)  # add margin around entire plot
+  )
 ```
 
-**Interpretation**:
+**Interpretation**: The @tbl-gdp-rank and @fig-gdp-vs-rank show that as GDP and rank have a relatively strong, positive, linear relationship. This means that as GDP increases then so will rank. This means that countries that have higher GDP are more likely to have a higher rank and be more well off. If a country is struggling to create world wide markets, new goods, and build capital, than their government and people are going to struggle. This means the output of the country will be lower and thus rank will reflect this. You want your country to have a high GDP!
 
 ## 3. Corruption Perception vs Country Rank
 
 \vspace{4mm}
 
 ```{r}
-library(dplyr)
+#| label: tbl-corruption-rank
 #| tbl-cap: "Corruption Perception Statistics by Rank Group"
+# PRIMARY AUTHOR: Jenny Tong
+# REVIEWER: Nguyen Ngo
 
-# create rank groups first 
-happiness_2024 <- happiness_2024 %>% 
-  mutate(
-    rank_group = cut(rank, 
-                     breaks = quantile(rank, probs = seq(0, 1, 0.2), na.rm = TRUE),
-                     labels = c("Top 20%", "20-40%", "40-60%", "60-80%", "Bottom 20%"),
-                     include.lowest = TRUE)
-  )
+library(dplyr)
 
 # create the summary table for corruption
 corruption_summary <- happiness_2024 %>% 
@@ -260,8 +334,8 @@ knitr::kable(corruption_summary)
 #| label: fig-corruption-vs-rank
 #| fig-cap: "Corruption Perception vs Country Rank"
 #| fig-alt: "Scatter plot showing corruption perception scores on x axis and country ranks on y axis. Points are color coded by rank groups."
-
-library(ggplot2)
+# PRIMARY AUTHOR: Jenny Tong
+# REVIEWER: Nguyen Ngo
 
 ggplot(happiness_2024, aes(x = corruption, y = rank)) +
   geom_point(aes(color = rank_group), size = 3, alpha = 0.7) +
@@ -270,58 +344,101 @@ ggplot(happiness_2024, aes(x = corruption, y = rank)) +
   scale_color_brewer(palette = "Set1", name = "Rank Group") +
   labs(
     title = "Corruption Perception vs Country Rank (2024)",
-    x = "Corruption Perception Score\n(Negative = Higher Corruption Perception)",
+    x = "Corruption Perception Score\n(0= Higher Belief of Corruption and 1=Low Belief of Corrpuption)",
     y = "Rank (1 = Happiest)"
   ) +
   theme_minimal() +
   theme(
     plot.title = element_text(face = "bold", size = 14, margin = margin(b = 15)),
-    axis.title.x = element_text(margin = margin(t = 10)),  # Move x-axis label down
-    axis.title.y = element_text(margin = margin(r = 10)),  # Move y-axis label right
+    axis.title.x = element_text(margin = margin(t = 10)),  
+    axis.title.y = element_text(margin = margin(r = 10)),  
     legend.position = "right",
     plot.margin = margin(20, 20, 20, 20)  
   )
 ```
 
-<<<<<<< Updated upstream
-**Interpretation**:
-Overall, both the table and the graph for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score, although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher tank are more likely to have a higher corruption perception score.
-=======
-**Interpretation**: Overall, both the @tbl-corruption-rank and the @fig-corruption-vs-rank for corruption perception vs country rank in the world happiness report indicates a positive relationship: the higher score of corruption perception will correlate to a higher rank in the world happiness report. For the corruption perception score, it is determined by whether the people of said country to say their government's public sector is corrupt, whwre 0 corresponds to high corruption and a score of 1 corresponds to a belief of low corruption. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score (high belief of corruption), although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher rank are more likely to have a higher corruption perception score, low belief in corruption.
->>>>>>> Stashed changes
+**Interpretation**: Overall, both the @tbl-corruption-rank and the @fig-corruption-vs-rank for corruption perception vs country rank in the world happiness report indicates a positive relationship, as in, the higher score of corruption perception will correlate to a higher rank in the world happiness report. This is scaled almost inversely because a score of 0 corresponds to high corruption where as a score of 1 corresponds to a belief of low corruption. Specifically, it is visually apparent that countries with a lower happiness, those in the bottom 50%, almost all of them would have a lower corruption perception score (high belief of corruption), although it does seem like within these countries, a lower happiness would skew the corruption perception score higher. Among those in the top 25% of world happiness report, countries are fairly spread out in terms of their corruption perception score, however, similar to the lower 50% of the ranks, those with a higher rank are more likely to have a higher corruption perception score (low belief in corruption aka clean).
 
-## 4. Counries ranking (?) or other graphs maybe
+\newpage
 
-\vspace{4mm}
-
-```{r}
-
-```
-
-\vspace{4mm}
-
-```{r}
-
-```
-
-**Interpretation**"
-
-# Discussion and Conclusions
+# Discussion and Conclusions {#sec-conclusions}
 
 ## Key Findings
 
-1.  **Life Evaluation**:
+1.  **Life Evaluation**: Life evaluation is the one of the strongest predictor of a happiness rank. Countries with higher average life evaluation scores appear in higher happiness ranks. This forms an almost perfect linear relationship.
 
-2.  **Economic Foundation**
+2.  **Economic Foundation**: Higher GDP contribution strongly correlates to better happiness rankings. Wealthier countries tend to provide better living standards for their citizens. This supports the national well-being.
 
-3.  **Governance Importance**
+3.  **Governance Importance**: Countries with higher corruption perception (belief that their country is free of corruption due to the inverse scale 0-100) scores generally rank higher in happiness. This shows that trust in government is most likely linked to national well-being.
 
-## Limitations and Future Research
+# Limitations and Future Research {#sec-limits}
 
-## Recommendations (???)
+## Limitations:
 
-# Author Contributions
+-   **Data Constraints:** The dataset relies on a self reported survey by Gallup World Poll. This may include bias, uneven sampling, and even cultural differences in how people perceive satisfaction.
 
-# References
+-   **Variable Simplicity:** Factors like GDP, social support and governance are represented by a singular metric which could oversimplify what reality is like.
+
+-   **Correlation ≠ Causation:** The key metrics used above simply show the relationships with happiness rankings. They do not prove that there is a causation on higher happiness rankings.
+
+## Future Research:
+
+-   **Cultural Comparisons:** Examine how different culture groups may highlight the differences in how happiness is influenced.
+
+-   **Additional Key Metrics**: Other factors such as education access, healthcare access, political stability, etc. may influence happiness as well.
+
+# Author Contributions {#sec-author-contributions}
+
+1.  Nguyen Ngo: Managed the GitHub repository, formatted and structured the report, led the data wrangling process, ensured consistency across data and rendered the full Quarto document. Created the summary statistics section and conducted the life evaluation analysis and interpretation. Handled technical coding and ensured the accuracy of all components.
+
+2.  Jenny Tong: Imported the dataset, did quality check to identify errors and inconsistencies. Ensured that the project fully met the assignment guidelines and contributed to the analysis and interpretation of the corruption perception section.
+
+3.  Ava Walters: Organized project files, maintained the README, and ensured the final report aligned with the GitHub outline. Led the group in deciding how to approach and analyze the data. Highlighted key aspects of data. Created the GDP figure and table and verified that all visualizations and results were correctly integrated.
+
+\newpage
 
 # Code Appendix
+
+This appendix contains all R code used in the analysis.
+
+## 1. DATA WRANGLING AND PREPARATION
+
+```{r ref.label='world-happiness-index-wrangling', echo=TRUE, eval=FALSE}
+```
+
+## 2. SUMMARY STATISTICS
+
+```{r ref.label='summary-stats-table', echo=TRUE, eval=FALSE}
+```
+
+## 3. VISUALIZATIONS
+
+### 3.1 Life Evaluation vs Country Rank
+
+```{r ref.label='tbl-life-eval', echo=TRUE, eval=FALSE}
+```
+
+```{r ref.label='fig-life-plot', echo=TRUE, eval=FALSE}
+```
+
+### 3.2 GDP Contribution vs Country Rank
+
+```{r ref.label='tbl-gdp-rank', echo=TRUE, eval=FALSE}
+```
+
+```{r ref.label='fig-gdp-vs-rank', echo=TRUE, eval=FALSE}
+```
+
+### 3.3 Corruption Perception vs Country Rank
+
+```{r ref.label='tbl-corruption-rank', echo=TRUE, eval=FALSE}
+```
+
+```{r ref.label='fig-corruption-vs-rank', echo=TRUE, eval=FALSE}
+```
+
+\newpage
+
+Data comes from the World Happiness Report [@helliwell2025] and the dataset is provided by SDSN [@worldhappiness2024]. Polling data come from Gallup [@gallup2024].
+
+# References {#sec-references}
